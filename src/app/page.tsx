@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch posts from Sanity database
+  const posts = await client.fetch(`*[_type == "post"] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    "slug": slug.current,
+    "imageUrl": mainImage.asset->url
+  }`);
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
       {/* Skip to main content link for Accessibility */}
@@ -149,6 +158,45 @@ export default function Home() {
                 </Link>
               </div>
             </article>
+          </div>
+        </section>
+
+        {/* Sanity News Section */}
+        <section className="py-20 bg-slate-50 border-t border-slate-100" aria-labelledby="news-heading">
+          <div className="text-center mb-16 max-w-3xl mx-auto px-4">
+            <h2 id="news-heading" className="text-4xl font-black text-slate-900 tracking-tight">
+              Latest News from Sanity CMS
+            </h2>
+            <p className="mt-4 text-slate-500 text-lg font-medium">
+              These articles are fetched live from the Sanity Content Lake.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {posts.length === 0 ? (
+              <p className="col-span-3 text-center text-slate-500 italic font-medium">No posts found. Go to /studio to create one!</p>
+            ) : (
+              posts.map((post: any) => (
+                <article key={post._id} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1">
+                  <div className="h-48 bg-slate-200 w-full overflow-hidden" aria-hidden="true">
+                    {post.imageUrl ? (
+                      <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-green-300 to-emerald-200"></div>
+                    )}
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-xl font-bold mb-4 text-slate-900">{post.title}</h3>
+                    <Link 
+                      href={`/blog`}
+                      className="inline-block font-bold text-green-600 hover:text-green-700 transition-colors"
+                    >
+                      Read Article →
+                    </Link>
+                  </div>
+                </article>
+              ))
+            )}
           </div>
         </section>
 
