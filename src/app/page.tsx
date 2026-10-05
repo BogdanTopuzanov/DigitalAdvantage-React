@@ -10,6 +10,9 @@ export default async function Home() {
     "imageUrl": mainImage.asset->url
   }`);
 
+  // Fetch the latest testimonial
+  const testimonial = await client.fetch(`*[_type == "testimonial"] | order(_createdAt desc)[0]`);
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
       {/* Skip to main content link for Accessibility */}
@@ -210,13 +213,13 @@ export default async function Home() {
               </svg>
             </div>
             <blockquote className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-8 leading-tight">
-              "The teaching provided by DA was inspirational, differentiated and well informed. The trainer built a strong, professional and appropriate relationship with each student."
+              "{testimonial ? testimonial.quote : 'The teaching provided by DA was inspirational, differentiated and well informed. The trainer built a strong, professional and appropriate relationship with each student.'}"
             </blockquote>
             <cite className="flex items-center gap-4 not-italic">
               <div className="w-12 h-12 bg-slate-200 rounded-full" aria-hidden="true"></div>
               <div className="text-left">
-                <p className="font-bold text-slate-900">Paul Rogers</p>
-                <p className="text-sm font-medium text-slate-500">North Ridge High School</p>
+                <p className="font-bold text-slate-900">{testimonial ? testimonial.author : 'Paul Rogers'}</p>
+                <p className="text-sm font-medium text-slate-500">{testimonial ? testimonial.role : 'North Ridge High School'}</p>
               </div>
             </cite>
           </div>
