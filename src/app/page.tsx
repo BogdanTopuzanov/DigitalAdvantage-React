@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0; // Disable static caching so updates from Sanity appear instantly
+
 export default async function Home() {
   // Fetch posts from Sanity database
   const posts = await client.fetch(`*[_type == "post"] | order(publishedAt desc)[0...3] {
