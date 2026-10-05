@@ -15,6 +15,9 @@ export default async function Home() {
   // Fetch the latest testimonial
   const testimonial = await client.fetch(`*[_type == "testimonial"] | order(_createdAt desc)[0]`);
 
+  // Fetch global settings
+  const settings = await client.fetch(`*[_type == "siteSettings"][0]`);
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
       {/* Skip to main content link for Accessibility */}
@@ -61,11 +64,11 @@ export default async function Home() {
               ))}
               <li className="pl-4 border-l border-slate-200">
                 <a 
-                  href="tel:01614102040" 
+                  href={`tel:${settings?.phoneNumber || '01614102040'}`}
                   className="text-sm font-black text-slate-900 hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
-                  aria-label="Call us at (0161) 410 2040"
+                  aria-label={`Call us at ${settings?.phoneNumber || '(0161) 410 2040'}`}
                 >
-                  📞 (0161) 410 2040
+                  📞 {settings?.phoneNumber || '(0161) 410 2040'}
                 </a>
               </li>
             </ul>
@@ -83,7 +86,9 @@ export default async function Home() {
           
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 id="hero-heading" className="text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
-              Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span>
+              {settings?.heroTitle || (
+                <>Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span></>
+              )}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-medium">
               Digital Advantage is a charity established in 2020 to help young people with Special Educational Needs and Disabilities (SEND), gain creative, digital and core skills to help them into employment in the digital economy. We do this by providing strengths-based, experiential learning delivered by industry experts.
@@ -256,10 +261,10 @@ export default async function Home() {
             <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6">Safeguarding</h3>
             <p className="text-slate-300 mb-2 font-medium">Designated Safeguarding Lead: Caroline Dean</p>
             <a 
-              href="mailto:caroline.d@disc.ac.uk" 
+              href={`mailto:${settings?.email || 'caroline.d@disc.ac.uk'}`}
               className="text-green-400 font-bold hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors"
             >
-              caroline.d@disc.ac.uk
+              {settings?.email || 'caroline.d@disc.ac.uk'}
             </a>
           </div>
 
@@ -270,10 +275,10 @@ export default async function Home() {
               <p>Holyoake House, Hanover Street<br/>Manchester, M4 4AH</p>
               <p>
                 <a 
-                  href="tel:01614102040" 
+                  href={`tel:${settings?.phoneNumber || '01614102040'}`}
                   className="font-bold text-white hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors"
                 >
-                  (0161) 410 2040
+                  {settings?.phoneNumber || '(0161) 410 2040'}
                 </a>
               </p>
             </address>
