@@ -91,7 +91,10 @@ export default async function Home() {
               )}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-medium">
-              Digital Advantage is a charity established in 2020 to help young people with Special Educational Needs and Disabilities (SEND), gain creative, digital and core skills to help them into employment in the digital economy. We do this by providing strengths-based, experiential learning delivered by industry experts.
+              Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, colleges and community settings across the Northwest, and through our Manchester city centre specialist college, DISC.
+            </p>
+            <p className="mt-6 text-lg font-bold text-slate-800 max-w-3xl mx-auto">
+              Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
             </p>
           </div>
         </section>
