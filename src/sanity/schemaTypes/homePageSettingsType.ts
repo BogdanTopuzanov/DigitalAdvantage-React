@@ -5,9 +5,9 @@ export const homePageSettingsType = defineType({
   title: 'Home Page Settings',
   type: 'document',
   groups: [
-    { name: 'hero', title: '1. Hero Section' },
-    { name: 'mission', title: '2. Mission Statement' },
-    { name: 'highlights', title: '3. Home News Cards' },
+    { name: 'hero', title: '1. Hero & Mission' },
+    { name: 'programmes', title: '2. Core Programmes (Cards)' },
+    { name: 'highlights', title: '3. News & Highlights' },
   ],
   fields: [
     defineField({
@@ -22,8 +22,44 @@ export const homePageSettingsType = defineType({
       name: 'heroSubtitle',
       title: 'Mission Description Paragraph',
       type: 'text',
-      group: 'mission',
+      group: 'hero',
       description: 'Overview of charity and DISC specialist college provision',
+    }),
+    defineField({
+      name: 'programmesHeading',
+      title: 'Programmes Section Heading',
+      type: 'string',
+      group: 'programmes',
+      initialValue: 'Just how do we reveal that talent?',
+    }),
+    defineField({
+      name: 'programmesSubheading',
+      title: 'Programmes Section Subheading',
+      type: 'string',
+      group: 'programmes',
+      initialValue: 'There are 5 Digital Advantage programmes available, each designed to get the best out of young people.',
+    }),
+    defineField({
+      name: 'homeProgrammes',
+      title: 'Core Programmes Cards (e.g. DISC, PopUp, Online)',
+      type: 'array',
+      group: 'programmes',
+      description: 'The cards shown under "There are 5 Digital Advantage programmes available..."',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'title', title: 'Programme Name', type: 'string', validation: (Rule) => Rule.required() },
+            { name: 'description', title: 'Description', type: 'text', rows: 3 },
+            { name: 'buttonText', title: 'Button Text', type: 'string', initialValue: 'Learn More' },
+            { name: 'linkUrl', title: 'Button URL', type: 'string', initialValue: '/disc' },
+            { name: 'image', title: 'Card Header Image (Optional)', type: 'image', options: { hotspot: true } },
+          ],
+          preview: {
+            select: { title: 'title', subtitle: 'linkUrl', media: 'image' },
+          },
+        },
+      ],
     }),
     defineField({
       name: 'homeHighlights',

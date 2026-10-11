@@ -207,11 +207,11 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           </header>
 
           {/* Featured Image */}
-          {(article.imageUrl || article.image) && (
+          {(article.imageUrl || article.image || fallbackArticles[slug]?.imageUrl) && (
             <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={article.imageUrl || article.image}
+                src={article.imageUrl || article.image || fallbackArticles[slug]?.imageUrl}
                 alt={article.title}
                 className="w-full h-auto object-cover max-h-[500px]"
               />

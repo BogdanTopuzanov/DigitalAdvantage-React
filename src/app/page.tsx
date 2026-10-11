@@ -26,6 +26,15 @@ export default async function Home() {
   ) {
     heroTitle,
     heroSubtitle,
+    programmesHeading,
+    programmesSubheading,
+    homeProgrammes[] {
+      title,
+      description,
+      buttonText,
+      linkUrl,
+      "imageUrl": image.asset->url
+    },
     homeHighlights[] {
       title,
       description,
@@ -33,6 +42,34 @@ export default async function Home() {
       linkUrl
     }
   }`);
+
+  const defaultProgrammes = [
+    {
+      title: 'DISC',
+      description: "In September 2022 we opened our Digital Independent Specialist College (DISC), with partners SENDCode. Based in Manchester City Centre we established the UK's first Independent Specialist College.",
+      buttonText: 'Learn More',
+      linkUrl: '/disc',
+      gradient: 'from-slate-300 to-slate-200'
+    },
+    {
+      title: 'PopUp Digital Agency',
+      description: 'Delivered over 30 hours across 5 days, the PopUp Digital Agency is our flagship experiential learning programme giving young people experience of working in a realistic digital agency environment.',
+      buttonText: 'Play Now',
+      linkUrl: '/popup',
+      gradient: 'from-indigo-300 to-purple-200'
+    },
+    {
+      title: 'Digital Advantage Online',
+      description: 'A series of digital skills workshops that can be delivered as part of our face-to-face training programmes, or more flexibly in shorter chunks to augment the national curriculum.',
+      buttonText: 'Learn More',
+      linkUrl: '/digital-advantage-online',
+      gradient: 'from-amber-300 to-orange-200'
+    },
+  ];
+
+  const programmesList = (homeSettings?.homeProgrammes && homeSettings.homeProgrammes.length > 0)
+    ? homeSettings.homeProgrammes
+    : defaultProgrammes;
 
   const defaultHomeNews = [
     {
@@ -97,78 +134,58 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Modern Cards Section */}
+        {/* Modern Programmes Cards Section (Configurable via Sanity) */}
         <section className="py-20 bg-slate-50 relative" aria-labelledby="programs-heading">
           <div className="text-center mb-16 max-w-3xl mx-auto px-4">
             <h2 id="programs-heading" className="text-4xl font-black text-slate-900 tracking-tight">
-              Just how do we reveal that talent?
+              {homeSettings?.programmesHeading || 'Just how do we reveal that talent?'}
             </h2>
             <p className="mt-4 text-slate-500 text-lg font-medium">
-              There are 5 Digital Advantage programmes available, each designed to get the best out of young people.
+              {homeSettings?.programmesSubheading || 'There are 5 Digital Advantage programmes available, each designed to get the best out of young people.'}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Card 1 */}
-            <article className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden focus-within:ring-4 focus-within:ring-green-500 transition-all duration-300 hover:-translate-y-1">
-              <div className="h-48 bg-slate-200 w-full" aria-hidden="true">
-                {/* Image placeholder */}
-                <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-200"></div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">DISC</h3>
-                <p className="text-slate-600 mb-8 line-clamp-4 text-sm leading-relaxed">
-                  In September 2022 we opened our Digital Independent Specialist College (DISC), with partners SENDCode. Based in Manchester City Centre we established the UK's first Independent Specialist College.
-                </p>
-                <Link 
-                  href="/disc" 
-                  className="inline-block font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 rounded-full px-6 py-3 transition-all"
-                  aria-label="Learn more about DISC"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </article>
+            {programmesList.map((prog: any, idx: number) => {
+              const bgGradients = [
+                'from-slate-300 to-slate-200',
+                'from-indigo-300 to-purple-200',
+                'from-amber-300 to-orange-200',
+                'from-emerald-300 to-teal-200',
+                'from-rose-300 to-pink-200'
+              ];
+              const gradient = prog.gradient || bgGradients[idx % bgGradients.length];
 
-            {/* Card 2 */}
-            <article className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden focus-within:ring-4 focus-within:ring-green-500 transition-all duration-300 hover:-translate-y-1">
-              <div className="h-48 bg-slate-200 w-full" aria-hidden="true">
-                <div className="w-full h-full bg-gradient-to-br from-indigo-300 to-purple-200"></div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">PopUp Digital Agency</h3>
-                <p className="text-slate-600 mb-8 line-clamp-4 text-sm leading-relaxed">
-                  Delivered over 30 hours across 5 days, the PopUp Digital Agency is our flagship experiential learning programme giving young people experience of working in a realistic digital agency environment.
-                </p>
-                <Link 
-                  href="/popup" 
-                  className="inline-block font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 rounded-full px-6 py-3 transition-all"
-                  aria-label="Play Now for PopUp Digital Agency"
-                >
-                  Play Now
-                </Link>
-              </div>
-            </article>
-
-            {/* Card 3 */}
-            <article className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden focus-within:ring-4 focus-within:ring-green-500 transition-all duration-300 hover:-translate-y-1">
-              <div className="h-48 bg-slate-200 w-full" aria-hidden="true">
-                <div className="w-full h-full bg-gradient-to-br from-amber-300 to-orange-200"></div>
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">Digital Advantage Online</h3>
-                <p className="text-slate-600 mb-8 line-clamp-4 text-sm leading-relaxed">
-                  A series of digital skills workshops that can be delivered as part of our face-to-face training programmes, or more flexibly in shorter chunks to augment the national curriculum.
-                </p>
-                <Link 
-                  href="/digital-advantage-online" 
-                  className="inline-block font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 rounded-full px-6 py-3 transition-all"
-                  aria-label="Learn more about Digital Advantage Online"
-                >
-                  Learn More
-                </Link>
-              </div>
-            </article>
+              return (
+                <article key={idx} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden focus-within:ring-4 focus-within:ring-green-500 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+                  <div>
+                    <div className="h-48 bg-slate-200 w-full overflow-hidden" aria-hidden="true">
+                      {prog.imageUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={prog.imageUrl} alt={prog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      ) : (
+                        <div className={`w-full h-full bg-gradient-to-br ${gradient}`}></div>
+                      )}
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold mb-4 text-slate-900">{prog.title}</h3>
+                      <p className="text-slate-600 line-clamp-4 text-sm leading-relaxed">
+                        {prog.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-8 pt-0">
+                    <Link 
+                      href={prog.linkUrl || '/disc'} 
+                      className="inline-block font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 rounded-full px-6 py-3 transition-all"
+                      aria-label={`${prog.buttonText || 'Learn More'} for ${prog.title}`}
+                    >
+                      {prog.buttonText || 'Learn More'}
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
 

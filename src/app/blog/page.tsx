@@ -37,6 +37,18 @@ export default async function BlogPage() {
       excerpt
     }`);
 
+    const localBlogImages: Record<string, string> = {
+      'your-dna': '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+      'echoes-of-the-caribbean': '/images/blog/Caribean02-1-scaled-460x260_c.jpg',
+      'celebrating-a-decade-of-outreach-programmes-in-lancashire': '/images/blog/john-thompson-460x260_c.png',
+      'digital-skills-partners-for-schools-and-colleges': '/images/blog/Screenshot-2024-06-13-at-14.26.45-2-460x260_c.png',
+      'discovering-social-media-marketing-a-day-with-ben-simpson': '/images/blog/IMG_6192-scaled-460x260_c.jpg',
+      'meetings-that-make-a-difference': '/images/blog/inclusiveJobs-460x260_c.png',
+      'dylan-apprenticeship-story': '/images/blog/dylan-460x260_c.png',
+      'launch-of-disc': '/images/blog/DISC-logo-with-title-2-460x260_c.png',
+      'pupils-with-send-learn-skills-for-digital-careers': '/images/blog/WP_Digital_Advantage_SEND_140219_04-scaled-460x260_c.jpg',
+    };
+
     if (rawSanity && rawSanity.length > 0) {
       sanityPosts = rawSanity.map((p: any) => ({
         title: p.title || 'Untitled Post',
@@ -51,7 +63,7 @@ export default async function BlogPage() {
         author: p.author || 'Digital Advantage',
         text: p.excerpt || 'Read this newly published story directly from our Sanity content management system.',
         tags: p.categories || ['News', 'Digital Advantage'],
-        image: p.image || '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+        image: p.image || localBlogImages[p.slug] || '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
         slug: p.slug || 'post',
         categories: p.categories || ['News'],
         isFromSanity: true,
