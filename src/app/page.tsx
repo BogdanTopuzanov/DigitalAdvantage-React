@@ -18,9 +18,12 @@ export default async function Home() {
   const testimonial = await client.fetch(`*[_type == "testimonial"] | order(_createdAt desc)[0]`);
 
   // Fetch settings from Sanity (from dedicated schemas or legacy siteSettings)
-  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
-  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
-  const homeSettings = await client.fetch(`*[_type in ["homePageSettings", "siteSettings"]][0] {
+  const headerSettings = await client.fetch('coalesce(*[_type == "headerSettings"][0], *[_type == "siteSettings"][0])');
+  const footerSettings = await client.fetch('coalesce(*[_type == "footerSettings"][0], *[_type == "siteSettings"][0])');
+  const homeSettings = await client.fetch(`coalesce(
+    *[_type == "homePageSettings"] | order(_updatedAt desc)[0],
+    *[_type == "siteSettings"][0]
+  ) {
     heroTitle,
     heroSubtitle,
     homeHighlights[] {
@@ -84,7 +87,9 @@ export default async function Home() {
               )}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-medium">
-              Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, colleges and community settings across the Northwest, and through our Manchester city centre specialist college, DISC.
+              {homeSettings?.heroSubtitle || (
+                <>Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, colleges and community settings across the Northwest, and through our Manchester city centre specialist college, DISC.</>
+              )}
             </p>
             <p className="mt-6 text-lg font-bold text-slate-800 max-w-3xl mx-auto">
               Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.

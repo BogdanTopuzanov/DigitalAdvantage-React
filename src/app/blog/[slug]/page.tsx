@@ -36,8 +36,8 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   }
 
   // 2. Fetch settings
-  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
-  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
+  const headerSettings = await client.fetch('coalesce(*[_type == "headerSettings"][0], *[_type == "siteSettings"][0])');
+  const footerSettings = await client.fetch('coalesce(*[_type == "footerSettings"][0], *[_type == "siteSettings"][0])');
 
   // 3. Fallback database with all 9 authentic publications
   const fallbackArticles: Record<string, any> = {

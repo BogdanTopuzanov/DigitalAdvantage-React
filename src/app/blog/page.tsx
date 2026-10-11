@@ -20,8 +20,8 @@ interface BlogPost {
 
 export default async function BlogPage() {
   // 1. Fetch dynamic settings
-  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
-  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
+  const headerSettings = await client.fetch('coalesce(*[_type == "headerSettings"][0], *[_type == "siteSettings"][0])');
+  const footerSettings = await client.fetch('coalesce(*[_type == "footerSettings"][0], *[_type == "siteSettings"][0])');
 
   // 2. Fetch posts from Sanity if any exist
   let sanityPosts: BlogPost[] = [];
@@ -33,7 +33,8 @@ export default async function BlogPage() {
       "image": mainImage.asset->url,
       publishedAt,
       "author": author->name,
-      "categories": categories[]->title
+      "categories": categories[]->title,
+      excerpt
     }`);
 
     if (rawSanity && rawSanity.length > 0) {
@@ -48,7 +49,7 @@ export default async function BlogPage() {
             })
           : 'Recent Post',
         author: p.author || 'Digital Advantage',
-        text: 'Read this newly published story directly from our Sanity headless CMS content repository.',
+        text: p.excerpt || 'Read this newly published story directly from our Sanity content management system.',
         tags: p.categories || ['News', 'Digital Advantage'],
         image: p.image || '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
         slug: p.slug || 'post',
