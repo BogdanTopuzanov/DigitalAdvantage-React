@@ -2,28 +2,28 @@ import {defineField, defineType} from 'sanity'
 
 export const testimonialType = defineType({
   name: 'testimonial',
-  title: 'Testimonial (Отзыв)',
+  title: 'Partner Testimonials',
   type: 'document',
   fields: [
     defineField({
       name: 'quote',
       title: 'Quote Text',
       type: 'text',
-      description: 'Текст самого отзыва',
+      description: 'The testimonial feedback or recommendation statement',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'author',
-      title: 'Author Name',
+      title: 'Author Full Name',
       type: 'string',
-      description: 'Кто оставил отзыв (например: Paul Rogers)',
+      description: 'E.g. Paul Rogers',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'role',
-      title: 'Role / Organization',
+      title: 'Role / School / Organization',
       type: 'string',
-      description: 'Должность или организация (например: North Ridge High School)',
+      description: 'E.g. North Ridge High School or Greater Manchester Combined Authority',
     }),
   ],
   preview: {

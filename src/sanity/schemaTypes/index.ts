@@ -8,23 +8,21 @@ import {testimonialType} from './testimonialType'
 import {homePageSettingsType} from './homePageSettingsType'
 import {headerSettingsType} from './headerSettingsType'
 import {footerSettingsType} from './footerSettingsType'
-import {siteSettingsType} from './siteSettingsType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
-    // 1. Страницы и разделы
+    // 1. Pages & Layout Sections
     homePageSettingsType,
     headerSettingsType,
     footerSettingsType,
 
-    // 2. Блог и статьи
+    // 2. Blog & Publications
     postType,
     categoryType,
     authorType,
 
-    // 3. Отзывы и глобальные данные
+    // 3. Social Proof & Rich Text
     testimonialType,
-    siteSettingsType,
     blockContentType,
   ],
 }
