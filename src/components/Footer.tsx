@@ -102,19 +102,19 @@ export default function Footer({ settings }: FooterProps) {
       <h2 id="footer-heading" className="sr-only">Site Footer</h2>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
           
-          {/* Column 1: Brand Logo & Mission */}
-          <div className="flex flex-col items-start space-y-4">
+          {/* Column 1: Brand Logo & Mission (4 columns) */}
+          <div className="lg:col-span-4 flex flex-col items-start space-y-4">
             <Link href="/" className="inline-block group focus:outline-none focus:ring-4 focus:ring-green-500 rounded p-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/images/logo-footer.png" 
                 alt="Digital Advantage Logo" 
-                className="h-24 sm:h-28 w-auto max-w-[320px] object-contain group-hover:brightness-110 transition-all -ml-1"
+                className="h-16 sm:h-20 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
               />
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-sm text-slate-400 leading-relaxed max-w-xs sm:max-w-sm">
               {settings?.footerAbout || 'Digital Advantage is a registered charity in England and Wales. We help young neurodivergent people and individuals with SEND gain creative, digital and employability skills.'}
             </p>
             <span className="inline-block px-3 py-1 bg-slate-800 border border-slate-700/60 rounded-full text-xs font-semibold text-green-400">
@@ -122,8 +122,8 @@ export default function Footer({ settings }: FooterProps) {
             </span>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <nav aria-label="Footer Navigation">
+          {/* Column 2: Quick Links (2 columns) */}
+          <nav aria-label="Footer Navigation" className="lg:col-span-2">
             <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Quick Links
@@ -133,8 +133,8 @@ export default function Footer({ settings }: FooterProps) {
             </ul>
           </nav>
 
-          {/* Column 3: Safeguarding */}
-          <div>
+          {/* Column 3: Safeguarding (3 columns) */}
+          <div className="lg:col-span-3">
             <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Safeguarding
@@ -144,8 +144,8 @@ export default function Footer({ settings }: FooterProps) {
             </ul>
           </div>
 
-          {/* Column 4: Contact Us */}
-          <div>
+          {/* Column 4: Contact Us (3 columns) */}
+          <div className="lg:col-span-3">
             <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Contact Us
