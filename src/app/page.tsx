@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const revalidate = 0; // Disable static caching so updates from Sanity appear instantly
 
@@ -28,53 +30,8 @@ export default async function Home() {
         Skip to main content
       </a>
 
-      {/* MODERN HEADER (Glassmorphism) */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex-shrink-0 flex items-center gap-3">
-            {/* Placeholder for the green logo */}
-            <div className="w-10 h-10 bg-green-500 rounded-xl rounded-tr-none shadow-inner" aria-hidden="true"></div>
-            <Link 
-              href="/" 
-              className="text-2xl font-black text-slate-900 tracking-tight hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-2 py-1 transition-colors"
-              aria-label="Digital Advantage Home"
-            >
-              DIGITAL <span className="font-light text-slate-500">ADVANTAGE</span>
-            </Link>
-          </div>
-          
-          <nav aria-label="Main Navigation" className="hidden md:block">
-            <ul className="flex space-x-2 items-center">
-              {[
-                { name: 'HOME', href: '/' },
-                { name: 'POPUP', href: '/popup' },
-                { name: 'DISC', href: '/disc' },
-                { name: 'VIDEOS', href: '/videos' },
-                { name: 'BLOG', href: '/blog' },
-                { name: 'CONTACT', href: '/contact-us' },
-              ].map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-sm font-bold text-slate-600 hover:text-green-600 hover:bg-green-50 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-5 py-2 transition-all"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <li className="pl-4 border-l border-slate-200">
-                <a 
-                  href={`tel:${settings?.phoneNumber || '01614102040'}`}
-                  className="text-sm font-black text-slate-900 hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
-                  aria-label={`Call us at ${settings?.phoneNumber || '(0161) 410 2040'}`}
-                >
-                  📞 {settings?.phoneNumber || '(0161) 410 2040'}
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+      {/* MODERN HEADER */}
+      <Header activePage="HOME" phoneNumber={settings?.phoneNumber} />
 
       {/* MAIN CONTENT */}
       <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>
@@ -237,62 +194,8 @@ export default async function Home() {
 
       </main>
 
-      {/* FOOTER */}
-      <footer className="bg-slate-900 text-white py-16" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" className="sr-only">Site Footer</h2>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
-          
-          {/* Quick Links */}
-          <nav aria-label="Footer Navigation">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6">Quick Links</h3>
-            <ul className="space-y-4">
-              {['Home', 'PopUp', 'DISC', 'Videos', 'Blog', 'Contact'].map((link) => (
-                <li key={link}>
-                  <Link 
-                    href="#" 
-                    className="text-slate-300 font-medium hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Safeguarding */}
-          <div>
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6">Safeguarding</h3>
-            <p className="text-slate-300 mb-2 font-medium">Designated Safeguarding Lead: Caroline Dean</p>
-            <a 
-              href={`mailto:${settings?.email || 'caroline.d@disc.ac.uk'}`}
-              className="text-green-400 font-bold hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors"
-            >
-              {settings?.email || 'caroline.d@disc.ac.uk'}
-            </a>
-          </div>
-
-          {/* Contact & Legal */}
-          <div>
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6">Contact Us</h3>
-            <address className="not-italic text-slate-300 space-y-4 font-medium">
-              <p>Holyoake House, Hanover Street<br/>Manchester, M4 4AH</p>
-              <p>
-                <a 
-                  href={`tel:${settings?.phoneNumber || '01614102040'}`}
-                  className="font-bold text-white hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors"
-                >
-                  {settings?.phoneNumber || '(0161) 410 2040'}
-                </a>
-              </p>
-            </address>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-sm font-medium text-slate-500">
-          <p>Digital Advantage © All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Charity Number: 1188836</p>
-        </div>
-      </footer>
+      {/* MODERN FOOTER */}
+      <Footer settings={settings} />
     </div>
   );
 }
