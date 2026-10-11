@@ -20,7 +20,41 @@ export default async function Home() {
   // Fetch settings from Sanity (from dedicated schemas or legacy siteSettings)
   const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
   const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
-  const homeSettings = await client.fetch('*[_type in ["homePageSettings", "siteSettings"]][0]');
+  const homeSettings = await client.fetch(`*[_type in ["homePageSettings", "siteSettings"]][0] {
+    heroTitle,
+    heroSubtitle,
+    homeHighlights[] {
+      title,
+      description,
+      "imageUrl": image.asset->url,
+      linkUrl
+    }
+  }`);
+
+  const defaultHomeNews = [
+    {
+      title: 'Supported Internships at DISC',
+      description: 'Flexible educational and employment pathways for young people aged 16 to 24 with an EHCP.',
+      imageUrl: '/images/blog/DISC-logo-with-title-2-460x260_c.png',
+      linkUrl: '/disc',
+    },
+    {
+      title: 'Your DNA Outreach Programme',
+      description: 'Funded creative and digital skills workshops delivered directly into schools across Greater Manchester.',
+      imageUrl: '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+      linkUrl: '/blog/your-dna',
+    },
+    {
+      title: 'Autistica NDEI Gold Award Winner',
+      description: 'Recognised with the highest national benchmark for neurodiversity-inclusive employment pathways.',
+      imageUrl: '/images/blog/john-thompson-460x260_c.png',
+      linkUrl: '/blog',
+    },
+  ];
+
+  const homeNewsCards = (homeSettings?.homeHighlights && homeSettings.homeHighlights.length > 0)
+    ? homeSettings.homeHighlights
+    : defaultHomeNews;
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
@@ -133,42 +167,53 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Sanity News Section */}
+        {/* Home News & Highlights Section (Independent from Blog) */}
         <section className="py-20 bg-slate-50 border-t border-slate-100" aria-labelledby="news-heading">
           <div className="text-center mb-16 max-w-3xl mx-auto px-4">
-            <h2 id="news-heading" className="text-4xl font-black text-slate-900 tracking-tight">
-              Latest News from Sanity CMS
+            <span className="text-xs font-black tracking-widest text-green-600 uppercase bg-green-100 px-3 py-1 rounded-full">
+              Latest Highlights
+            </span>
+            <h2 id="news-heading" className="text-4xl font-black text-slate-900 tracking-tight mt-3">
+              News & Key Developments
             </h2>
             <p className="mt-4 text-slate-500 text-lg font-medium">
-              These articles are fetched live from the Sanity Content Lake.
+              Discover the latest updates, achievements and partnerships from across our programmes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {posts.length === 0 ? (
-              <p className="col-span-3 text-center text-slate-500 italic font-medium">No posts found. Go to /studio to create one!</p>
-            ) : (
-              posts.map((post: any) => (
-                <article key={post._id} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1">
+            {homeNewsCards.map((card: any, idx: number) => (
+              <article key={idx} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+                <div>
                   <div className="h-48 bg-slate-200 w-full overflow-hidden" aria-hidden="true">
-                    {post.imageUrl ? (
-                      <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {card.imageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={card.imageUrl} alt={card.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-green-300 to-emerald-200"></div>
                     )}
                   </div>
                   <div className="p-8">
-                    <h3 className="text-xl font-bold mb-4 text-slate-900">{post.title}</h3>
-                    <Link 
-                      href={`/blog`}
-                      className="inline-block font-bold text-green-600 hover:text-green-700 transition-colors"
-                    >
-                      Read Article →
-                    </Link>
+                    <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-green-600 transition-colors leading-snug">
+                      {card.title}
+                    </h3>
+                    {card.description && (
+                      <p className="text-sm text-slate-500 leading-relaxed font-normal">
+                        {card.description}
+                      </p>
+                    )}
                   </div>
-                </article>
-              ))
-            )}
+                </div>
+                <div className="p-8 pt-0">
+                  <Link 
+                    href={card.linkUrl || '/blog'}
+                    className="inline-flex items-center gap-1 font-bold text-green-600 hover:text-green-700 transition-colors text-sm"
+                  >
+                    Learn More <span>→</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
