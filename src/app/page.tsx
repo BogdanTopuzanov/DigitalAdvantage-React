@@ -17,8 +17,10 @@ export default async function Home() {
   // Fetch the latest testimonial
   const testimonial = await client.fetch(`*[_type == "testimonial"] | order(_createdAt desc)[0]`);
 
-  // Fetch global settings
-  const settings = await client.fetch(`*[_type == "siteSettings"][0]`);
+  // Fetch settings from Sanity (from dedicated schemas or legacy siteSettings)
+  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
+  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
+  const homeSettings = await client.fetch('*[_type in ["homePageSettings", "siteSettings"]][0]');
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
@@ -31,7 +33,7 @@ export default async function Home() {
       </a>
 
       {/* MODERN HEADER */}
-      <Header activePage="HOME" phoneNumber={settings?.phoneNumber} />
+      <Header activePage="HOME" phoneNumber={headerSettings?.phoneNumber} />
 
       {/* MAIN CONTENT */}
       <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>
@@ -43,7 +45,7 @@ export default async function Home() {
           
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 id="hero-heading" className="text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
-              {settings?.heroTitle || (
+              {homeSettings?.heroTitle || (
                 <>Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span></>
               )}
             </h1>
@@ -195,7 +197,7 @@ export default async function Home() {
       </main>
 
       {/* MODERN FOOTER */}
-      <Footer settings={settings} />
+      <Footer settings={footerSettings} />
     </div>
   );
 }

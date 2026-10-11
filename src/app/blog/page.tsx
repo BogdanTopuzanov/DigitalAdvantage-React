@@ -3,302 +3,308 @@ import { client } from '@/sanity/lib/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-export const revalidate = 0; // Fresh content on every load
+export const revalidate = 0; // Disable static caching so updates from Sanity appear instantly
 
-interface Post {
-  _id?: string;
+interface BlogPost {
   title: string;
+  date: string;
+  author: string;
+  text: string;
+  tags: string[];
+  image: string;
   slug: string;
-  imageUrl?: string;
-  publishedAt?: string;
-  authorName?: string;
-  categoryTitle?: string;
-  excerpt?: string;
+  categories?: string[];
+  externalUrl?: string;
+  isFromSanity?: boolean;
 }
 
 export default async function BlogPage() {
-  // 1. Fetch real posts from Sanity
-  let sanityPosts: Post[] = [];
+  // 1. Fetch dynamic settings
+  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
+  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
+
+  // 2. Fetch posts from Sanity if any exist
+  let sanityPosts: BlogPost[] = [];
   try {
-    sanityPosts = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
+    const rawSanity = await client.fetch(`*[_type == "post"] | order(publishedAt desc) {
       _id,
       title,
       "slug": slug.current,
-      "imageUrl": mainImage.asset->url,
+      "image": mainImage.asset->url,
       publishedAt,
-      "authorName": author->name,
-      "categoryTitle": categories[0]->title
+      "author": author->name,
+      "categories": categories[]->title
     }`);
+
+    if (rawSanity && rawSanity.length > 0) {
+      sanityPosts = rawSanity.map((p: any) => ({
+        title: p.title || 'Untitled Post',
+        date: p.publishedAt
+          ? new Date(p.publishedAt).toLocaleDateString('en-GB', {
+              weekday: 'long',
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })
+          : 'Recent Post',
+        author: p.author || 'Digital Advantage',
+        text: 'Read this newly published story directly from our Sanity headless CMS content repository.',
+        tags: p.categories || ['News', 'Digital Advantage'],
+        image: p.image || '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+        slug: p.slug || 'post',
+        categories: p.categories || ['News'],
+        isFromSanity: true,
+      }));
+    }
   } catch (error) {
     console.error('Failed to fetch posts from Sanity:', error);
   }
 
-  // 2. Fetch global site settings
-  let settings = null;
-  try {
-    settings = await client.fetch(`*[_type == "siteSettings"][0]`);
-  } catch (error) {
-    console.error('Failed to fetch site settings:', error);
-  }
-
-  // 3. Fallback / Authentic posts from digitaladvantage.org.uk/blog/
-  const fallbackPosts: Post[] = [
+  // 3. The 9 Authentic Publications from Digital Advantage
+  const authenticPosts: BlogPost[] = [
     {
-      _id: 'sample-1',
+      title: 'Your DNA – Empowering SEND Students Through Digital Storytelling',
+      date: 'Wednesday, 30 July 2025',
+      author: 'Ezra Rushen',
+      text: "Your Digital News Agency, or Your DNA for short, is Digital Advantage's outreach programme. Your DNA goes into schools and colleges across the North West, delivering an intensive and incredibly valuable digital work experience programme.",
+      tags: ['digital careers', 'Podcasts', 'SEND'],
+      image: '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+      slug: 'your-dna',
+      categories: ['Careers', 'News'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/your-dna/',
+    },
+    {
       title: 'Echoes of the Caribbean – Preserving the Past, Empowering the Future',
+      date: 'Wednesday, 30 July 2025',
+      author: 'Ezra Rushen',
+      text: "We're delighted to announce the release of the fourth captivating episode of our podcast, Echoes of the Caribbean. A vibrant journey through the stories and experiences of the Windrush Generation.",
+      tags: ['digital careers', 'Podcasts', 'SEND'],
+      image: '/images/blog/Caribean02-1-scaled-460x260_c.jpg',
       slug: 'echoes-of-the-caribbean',
-      categoryTitle: 'Podcasts & SEND',
-      authorName: 'Ezra Rushen',
-      publishedAt: '2025-07-30T10:00:00Z',
-      excerpt: "We're delighted to announce the release of the fourth captivating episode of our podcast, Echoes of the Caribbean. A vibrant journey through the stories and experiences of the Windrush Generation.",
-      imageUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&auto=format&fit=crop&q=80',
+      categories: ['Careers', 'News'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/echoes-of-the-caribbean-2/',
     },
     {
-      _id: 'sample-2',
-      title: 'Your DNA Manchester: Celebrating Young Creative Talent',
-      slug: 'your-dna-manchester',
-      categoryTitle: 'Careers & News',
-      authorName: 'Ezra Rushen',
-      publishedAt: '2025-05-28T10:00:00Z',
-      excerpt: 'Your Digital News Agency Celebration: Showcasing Young Talent Across Greater Manchester. Empowering young people with special educational needs to develop digital skills and creative confidence.',
-      imageUrl: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+      title: 'Celebrating a decade of outreach programmes in Lancashire.',
+      date: 'Monday, 30 September 2024',
+      author: 'Ezra Rushen',
+      text: 'Digital Advantage is delighted to announce that once again they have secured funding from our long-term partners at Future U and Lancashire County Council to run outreach activities at schools and colleges across the county, in the academic year 2024/25. This long-standing collaboration started in 2014; over that time more than a thousand students have',
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+      image: '/images/blog/john-thompson-460x260_c.png',
+      slug: 'celebrating-a-decade-of-outreach-programmes-in-lancashire',
+      categories: ['News', 'Outreach'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/celebrating-a-decade-of-outreach-programmes-in-lancashire/',
     },
     {
-      _id: 'sample-3',
-      title: 'Digital Advantage Wins Neurodiversity Employment (NDEI) Gold Award',
-      slug: 'digital-advantage-wins-gold-award',
-      categoryTitle: 'Awards',
-      authorName: 'Digital Advantage Team',
-      publishedAt: '2025-04-03T10:00:00Z',
-      excerpt: "Digital Advantage are proud to announce that we have been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research organisation for Autism.",
-      imageUrl: 'https://images.unsplash.com/photo-1579389083078-4e7018379f7e?w=800&auto=format&fit=crop&q=80',
+      title: 'Digital Skills Partners for Schools and Colleges',
+      date: 'Wednesday, 19 June 2024',
+      author: 'Ezra Rushen',
+      text: 'For 7 years now we have been running unique digital skills programmes with schools from across the region, and they are still a fantastic way of helping young people equip themselves for life in the 21st century and for schools to work with industry experts to inspire the next generation of digital makers. This year’s',
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+      image: '/images/blog/Screenshot-2024-06-13-at-14.26.45-2-460x260_c.png',
+      slug: 'digital-skills-partners-for-schools-and-colleges',
+      categories: ['Careers', 'Education'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/digital-skills-partners-for-schools-and-colleges/',
     },
     {
-      _id: 'sample-4',
-      title: 'Celebrating a Decade of Outreach Programmes in Lancashire',
-      slug: 'celebrating-a-decade-of-outreach-in-lancashire',
-      categoryTitle: 'Outreach',
-      authorName: 'Ezra Rushen',
-      publishedAt: '2024-09-30T10:00:00Z',
-      excerpt: 'Securing funding from our long-term partners at Future U and Lancashire County Council to run outreach digital skills activities at schools and colleges for over 1,000 students.',
-      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80',
+      title: 'Discovering Social Media Marketing: A Day with Ben Simpson',
+      date: 'Friday, 15 March 2024',
+      author: 'Ezra Rushen',
+      text: 'On the 8th of February, DISC was delighted to host a special one-day workshop on Social Media Marketing, led by the talented Ben Simpson. Ben, who serves as a Governor of DISC, is not only a freelance social media manager and content creator but also a film-maker with a rich background in digital media. The',
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+      image: '/images/blog/IMG_6192-scaled-460x260_c.jpg',
+      slug: 'discovering-social-media-marketing-a-day-with-ben-simpson',
+      categories: ['Workshops', 'DISC'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/discovering-social-media-marketing-a-day-with-ben-simpson/',
+    },
+    {
+      title: 'Meetings that Make a Difference',
+      date: 'Tuesday, 23 January 2024',
+      author: 'Andy Lovatt',
+      text: 'Towards the back end of last year we had a great meeting with James Inman and his team at Inclusive Jobs. Great meetings are rare and the butt of many negative quotes and jokes. It’s easy to arrange a meeting but much harder to make things happen afterwards. I am not a fan of the',
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+      image: '/images/blog/inclusiveJobs-460x260_c.png',
+      slug: 'meetings-that-make-a-difference',
+      categories: ['Partnerships'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/meetings-that-make-a-difference/',
+    },
+    {
+      title: 'Dylan Apprenticeship Story',
+      date: 'Wednesday, 30 November 2022',
+      author: 'Ezra Rushen',
+      text: 'Dylan originally joined the Digital Advantage as part of Digital Inc. internship in 2021. The course was transformational for him, building his digital skills, along with confidence and timekeeping. An asset to any company, Digital Advantage was keen to keep hold of Dylan and were delighted that the Co-op stepped forward to partially fund his',
+      tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
+      image: '/images/blog/dylan-460x260_c.png',
+      slug: 'dylan-apprenticeship-story',
+      categories: ['Case Studies', 'Apprenticeships'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/careers/dylan-apprenticeship-story/',
+    },
+    {
+      title: 'Launch of DISC',
+      date: 'Wednesday, 30 November 2022',
+      author: 'Ezra Rushen',
+      text: 'Digital Advantage is proud to announce that DISC, the Digital Independent Specialist College in Manchester, has celebrated completing it’s first half term by welcoming ten new interns. They started their exciting journey in September, completing a four week induction, experimenting with digital photography, video, storyboarding, animation, graphics, scriptwriting, UX design, podcasting and web design. Be sure',
+      tags: ['careers', 'digital careers', 'SEND'],
+      image: '/images/blog/DISC-logo-with-title-2-460x260_c.png',
+      slug: 'launch-of-disc',
+      categories: ['DISC College', 'News'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/launch-of-disc/',
+    },
+    {
+      title: 'Pupils with SEND learn skills for digital careers',
+      date: 'Thursday, 16 September 2021',
+      author: 'Ezra Rushen',
+      text: 'We have a case study featured in this months issue of Children & Young People Now. It looks at our Digital Inc. Agency that offered digital supported internships to young people with SEND. It charts the progress of Beck, one of our interns, who we first met at one of our Pop-Up Digital Agency deliveries,',
+      tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
+      image: '/images/blog/WP_Digital_Advantage_SEND_140219_04-scaled-460x260_c.jpg',
+      slug: 'pupils-with-send-learn-skills-for-digital-careers',
+      categories: ['SEND', 'Case Studies'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/careers/pupils-with-send-learn-skills-for-digital-careers-2/',
     },
   ];
 
-  // Merge Sanity posts with fallbacks so the page always looks full and vibrant
-  const allPosts = [...sanityPosts, ...fallbackPosts.filter(fp => !sanityPosts.some(sp => sp.slug === fp.slug))];
-  const featuredPost = allPosts[0];
-  const remainingPosts = allPosts.slice(1);
-
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Recent update';
-    try {
-      return new Date(dateString).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      });
-    } catch {
-      return dateString;
-    }
-  };
+  // Merge Sanity posts at the top, followed by authentic posts
+  const allPosts = [...sanityPosts, ...authenticPosts.filter((ap) => !sanityPosts.some((sp) => sp.slug === ap.slug))];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
+    <div className="min-h-screen flex flex-col font-sans bg-[#F4F6F8] text-slate-800">
       {/* Skip link */}
       <a
-        href="#blog-content"
+        href="#blog-main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-green-600 text-white px-6 py-3 z-[100] rounded-lg shadow-xl focus:ring-4 focus:ring-green-300 outline-none font-bold"
       >
         Skip to blog content
       </a>
 
       {/* Header with active BLOG indicator */}
-      <Header activePage="BLOG" phoneNumber={settings?.phoneNumber} />
+      <Header activePage="BLOG" phoneNumber={headerSettings?.phoneNumber} />
 
-      <main id="blog-content" className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-b from-white to-slate-50 border-b border-slate-200/60 py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-green-100 text-green-800 tracking-wider uppercase mb-4 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              News, Stories & Insights
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-              Digital Advantage <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Blog</span>
-            </h1>
-            <p className="mt-4 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-medium">
-              Discover stories from our students, outreach highlights across the Northwest, and insights into neurodivergent talent in the creative industries.
-            </p>
-
-            {/* Category Filter Pills */}
-            <div className="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
-              {['All Stories', 'Careers', 'News', 'Podcasts', 'SEND', 'Outreach'].map((cat, i) => (
-                <button
-                  key={cat}
-                  className={`px-5 py-2 rounded-full text-sm font-bold transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
-                    i === 0
-                      ? 'bg-slate-900 text-white shadow-md'
-                      : 'bg-white border border-slate-200 text-slate-600 hover:border-green-500 hover:text-green-600'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+      {/* Page Title Banner */}
+      <div className="bg-white border-b border-slate-200/80 py-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                Blog
+              </h1>
+              <p className="mt-2 text-slate-500 font-medium text-sm">
+                Stories, updates, and podcasts from Digital Advantage and DISC
+              </p>
+            </div>
+            
+            {/* Breadcrumb indicator */}
+            <div className="text-xs font-semibold text-slate-400">
+              <Link href="/" className="hover:text-green-600 transition-colors">Home</Link>
+              <span className="mx-2">/</span>
+              <span className="text-slate-800">Blog</span>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
 
-        {/* Content Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          {/* Featured Post Card */}
-          {featuredPost && (
-            <div className="mb-16">
-              <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-200/40 overflow-hidden hover:shadow-2xl hover:border-green-500/50 transition-all duration-300 group">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-                  
-                  {/* Image column */}
-                  <div className="lg:col-span-7 relative h-72 sm:h-96 lg:h-auto overflow-hidden bg-slate-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={featuredPost.imageUrl || '/images/logo-header.png'}
-                      alt={featuredPost.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3.5 py-1.5 bg-green-600/95 backdrop-blur-md text-white text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
-                        {featuredPost.categoryTitle || 'Featured Story'}
-                      </span>
-                    </div>
+      {/* Main Blog Listing */}
+      <main id="blog-main" className="flex-grow py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-12">
+            {allPosts.map((post, index) => (
+              <article
+                key={post.slug || index}
+                className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden p-6 sm:p-8"
+              >
+                {/* Header: Title, Date, Author */}
+                <header className="mb-6">
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 hover:text-green-600 transition-colors leading-snug tracking-tight">
+                    <Link href={`/blog/${post.slug}`}>
+                      {post.title}
+                    </Link>
+                  </h2>
+                  <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-400">
+                    <span className="text-slate-500">{post.date}</span>
+                    <span>•</span>
+                    <span>by <span className="text-green-700 font-bold">{post.author}</span></span>
+                    {post.isFromSanity && (
+                      <>
+                        <span>•</span>
+                        <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded font-bold uppercase text-[10px]">
+                          Sanity CMS Live
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </header>
+
+                {/* Body: Left Image, Right Text */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                  {/* Left Column: Image */}
+                  <div className="md:col-span-5 lg:col-span-5">
+                    <Link 
+                      href={`/blog/${post.slug}`} 
+                      className="block group overflow-hidden rounded-xl border border-slate-100 shadow-inner bg-slate-50 relative aspect-[16/9]"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </Link>
                   </div>
 
-                  {/* Content column */}
-                  <div className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 text-xs font-semibold text-slate-500 mb-4">
-                        <time dateTime={featuredPost.publishedAt}>
-                          {formatDate(featuredPost.publishedAt)}
-                        </time>
-                        <span>•</span>
-                        <span>by {featuredPost.authorName || 'Digital Advantage'}</span>
+                  {/* Right Column: Intro Text */}
+                  <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-between h-full">
+                    <p className="text-slate-600 text-base leading-relaxed font-normal">
+                      {post.text}
+                    </p>
+
+                    {/* Tags block */}
+                    <div className="mt-6 pt-4 border-t border-slate-100">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {post.tags.map((tag, tIdx) => (
+                          <span
+                            key={tIdx}
+                            className="inline-block px-3 py-1 bg-slate-100 hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-semibold rounded-full border border-slate-200/80 transition-colors"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
 
-                      <h2 className="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-green-600 transition-colors leading-snug tracking-tight">
-                        <Link href={`/blog/${featuredPost.slug || '#'}`}>
-                          {featuredPost.title}
+                      {/* Read More button & No Comments badge */}
+                      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
+                        >
+                          Read more
+                          <span aria-hidden="true">→</span>
                         </Link>
-                      </h2>
 
-                      <p className="mt-4 text-slate-600 leading-relaxed font-normal text-base line-clamp-3">
-                        {featuredPost.excerpt || "Read more about this project and the incredible achievements of our young creatives at Digital Advantage."}
-                      </p>
+                        <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+                          <svg className="w-4 h-4 text-slate-300" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm-4 0h-2v2h2V9z" clipRule="evenodd" />
+                          </svg>
+                          <span>No Comments</span>
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                      <Link
-                        href={`/blog/${featuredPost.slug || '#'}`}
-                        className="inline-flex items-center gap-2 text-green-600 font-bold hover:text-green-700 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-2 py-1"
-                      >
-                        Read Full Article
-                        <span aria-hidden="true">→</span>
-                      </Link>
-                      <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        4 min read
-                      </span>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Grid of Remaining Posts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {remainingPosts.map((post) => (
-              <article
-                key={post.slug || post._id}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-md shadow-slate-200/30 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 hover:border-green-500/50 transition-all duration-300 group"
-              >
-                <div>
-                  {/* Thumbnail Image */}
-                  <div className="relative h-52 overflow-hidden bg-slate-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.imageUrl || '/images/logo-header.png'}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className="px-3 py-1 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-wider rounded-full shadow-md">
-                        {post.categoryTitle || 'Story'}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400 mb-3">
-                      <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-                      <span>•</span>
-                      <span>{post.authorName || 'DA Team'}</span>
-                    </div>
-
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-green-600 transition-colors leading-snug tracking-tight">
-                      <Link href={`/blog/${post.slug || '#'}`}>
-                        {post.title}
-                      </Link>
-                    </h3>
-
-                    <p className="mt-3 text-sm text-slate-600 line-clamp-3 leading-relaxed">
-                      {post.excerpt || 'Explore this project, our training methodologies, and the impact created across schools and colleges.'}
-                    </p>
                   </div>
                 </div>
 
-                {/* Card Footer */}
-                <div className="p-6 pt-0 border-t border-slate-50 mt-4 flex items-center justify-between">
-                  <Link
-                    href={`/blog/${post.slug || '#'}`}
-                    className="text-sm font-bold text-green-600 hover:text-green-700 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-1 py-0.5"
-                  >
-                    Read more →
-                  </Link>
-                </div>
+                {/* Footer metadata line */}
+                {post.categories && post.categories.length > 0 && (
+                  <div className="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-400 font-medium flex items-center gap-2">
+                    <span className="text-slate-500 font-semibold">Published in:</span>
+                    <span>{post.categories.join(', ')}</span>
+                  </div>
+                )}
               </article>
             ))}
           </div>
-
-          {/* Call to action at bottom of blog */}
-          <div className="mt-20 bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl">
-            <div className="max-w-2xl mx-auto relative z-10">
-              <h3 className="text-2xl sm:text-3xl font-black tracking-tight mb-4">
-                Want to partner with Digital Advantage?
-              </h3>
-              <p className="text-slate-300 mb-8 text-base">
-                We deliver funded digital skills programmes, supported internships, and experiential workshops across the North West.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/contact-us"
-                  className="px-8 py-3.5 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl shadow-lg shadow-green-500/30 transition-all hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-green-500/50"
-                >
-                  Get in Touch
-                </Link>
-                <Link
-                  href="/disc"
-                  className="px-8 py-3.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-bold rounded-xl transition-all focus:outline-none focus:ring-4 focus:ring-slate-500"
-                >
-                  Explore DISC College
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        </div>
       </main>
 
-      {/* Footer */}
-      <Footer settings={settings} />
+      {/* Footer from Home Page */}
+      <Footer settings={footerSettings} />
     </div>
   );
 }

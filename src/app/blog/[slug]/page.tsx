@@ -35,63 +35,128 @@ export default async function BlogPostPage({ params }: PostPageProps) {
     console.error('Error fetching post:', err);
   }
 
-  // 2. Fetch site settings
-  let settings = null;
-  try {
-    settings = await client.fetch(`*[_type == "siteSettings"][0]`);
-  } catch (err) {
-    console.error('Error fetching settings:', err);
-  }
+  // 2. Fetch settings
+  const headerSettings = await client.fetch('*[_type in ["headerSettings", "siteSettings"]][0]');
+  const footerSettings = await client.fetch('*[_type in ["footerSettings", "siteSettings"]][0]');
 
-  // 3. Fallback demo data if post isn't in Sanity yet
+  // 3. Fallback database with all 9 authentic publications
   const fallbackArticles: Record<string, any> = {
+    'your-dna': {
+      title: 'Your DNA – Empowering SEND Students Through Digital Storytelling',
+      categoryTitle: 'Careers & News',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Wednesday, 30 July 2025',
+      imageUrl: '/images/blog/Celebration-event-County-Hall-2025-2-460x260_c.webp',
+      content: [
+        "Your Digital News Agency, or Your DNA for short, is Digital Advantage's outreach programme. Your DNA goes into schools and colleges across the North West, delivering an intensive and incredibly valuable digital work experience programme.",
+        "Students work in simulated agency teams covering roles like journalists, videographers, graphic designers, and project managers. They interview local figures and produce genuine news packages.",
+        "Over the years, this programme has empowered thousands of neurodivergent learners to develop confidence, teamwork, and modern digital portfolio pieces.",
+      ],
+      tags: ['digital careers', 'Podcasts', 'SEND'],
+    },
     'echoes-of-the-caribbean': {
       title: 'Echoes of the Caribbean – Preserving the Past, Empowering the Future',
       categoryTitle: 'Podcasts & SEND',
       authorName: 'Ezra Rushen',
-      publishedAt: '2025-07-30T10:00:00Z',
-      imageUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1200&auto=format&fit=crop&q=80',
+      publishedAt: 'Wednesday, 30 July 2025',
+      imageUrl: '/images/blog/Caribean02-1-scaled-460x260_c.jpg',
       content: [
         "We're delighted to announce the release of the fourth captivating episode of our podcast, Echoes of the Caribbean. A vibrant journey through the stories and experiences of the Windrush Generation.",
         "Produced and recorded by our talented interns and students at DISC, this episode explores oral histories, cultural preservation, and digital storytelling techniques.",
         "Through hands-on recording, audio editing, and interview coordination, students gain industry-recognised sound design and podcasting credentials, opening doors to careers in creative media.",
       ],
+      tags: ['digital careers', 'Podcasts', 'SEND'],
     },
-    'your-dna-manchester': {
-      title: 'Your DNA Manchester: Celebrating Young Creative Talent',
-      categoryTitle: 'Careers & News',
+    'celebrating-a-decade-of-outreach-programmes-in-lancashire': {
+      title: 'Celebrating a decade of outreach programmes in Lancashire.',
+      categoryTitle: 'News & Outreach',
       authorName: 'Ezra Rushen',
-      publishedAt: '2025-05-28T10:00:00Z',
-      imageUrl: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&auto=format&fit=crop&q=80',
+      publishedAt: 'Monday, 30 September 2024',
+      imageUrl: '/images/blog/john-thompson-460x260_c.png',
       content: [
-        "On Friday 7th March, we marked another fantastic year of Your Digital News Agency (Your DNA), our flagship outreach programme empowering young people to develop digital skills and creative confidence.",
-        "The celebration event took place at Heron House, home to the Greater Manchester digital community. Over 100 students from partner schools presented websites, video content, and branding packages created during their workshops.",
-        "Our industry mentors praised the students' professionalism and innovative problem-solving, with several students securing work experience opportunities directly from employers.",
-      ],
-    },
-    'digital-advantage-wins-gold-award': {
-      title: 'Digital Advantage Wins Neurodiversity Employment (NDEI) Gold Award',
-      categoryTitle: 'Awards',
-      authorName: 'Digital Advantage Team',
-      publishedAt: '2025-04-03T10:00:00Z',
-      imageUrl: 'https://images.unsplash.com/photo-1579389083078-4e7018379f7e?w=1200&auto=format&fit=crop&q=80',
-      content: [
-        "Digital Advantage are proud to announce that we have recently been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research-led campaigning organisation for Autism.",
-        "The NDEI is the only gold-standard evidence-based framework of its kind in the UK, evaluating workplace inclusion, specialist educational pathways, and sustained employment outcomes.",
-        "This recognition confirms our commitment to creating accessible, neurodivergent-friendly learning environments that truly bridge the gap between education and high-value tech employment.",
-      ],
-    },
-    'celebrating-a-decade-of-outreach-in-lancashire': {
-      title: 'Celebrating a Decade of Outreach Programmes in Lancashire',
-      categoryTitle: 'Outreach',
-      authorName: 'Ezra Rushen',
-      publishedAt: '2024-09-30T10:00:00Z',
-      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&auto=format&fit=crop&q=80',
-      content: [
-        "Digital Advantage is delighted to announce that once again they have secured funding from our long-term partners at Future U and Lancashire County Council to run outreach activities at schools and colleges across the county.",
+        "Digital Advantage is delighted to announce that once again they have secured funding from our long-term partners at Future U and Lancashire County Council to run outreach activities at schools and colleges across the county, in the academic year 2024/25.",
         "This long-standing collaboration started in 2014; over that time more than a thousand students have completed vocational digital challenges.",
-        "We look forward to expanding into three new college campuses this academic year, providing specialist digital equipment and industry mentor support.",
+        "Looking forward, we continue to bridge education and regional industry needs across Lancashire.",
       ],
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+    },
+    'digital-skills-partners-for-schools-and-colleges': {
+      title: 'Digital Skills Partners for Schools and Colleges',
+      categoryTitle: 'Careers & Education',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Wednesday, 19 June 2024',
+      imageUrl: '/images/blog/Screenshot-2024-06-13-at-14.26.45-2-460x260_c.png',
+      content: [
+        "For 7 years now we have been running unique digital skills programmes with schools from across the region, and they are still a fantastic way of helping young people equip themselves for life in the 21st century.",
+        "By inviting industry professionals into classrooms, schools can demonstrate real-world career paths to students with SEND.",
+        "Our partners benefit from bespoke curricula tailored to individual learner profiles and modern creative software.",
+      ],
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+    },
+    'discovering-social-media-marketing-a-day-with-ben-simpson': {
+      title: 'Discovering Social Media Marketing: A Day with Ben Simpson',
+      categoryTitle: 'Workshops & DISC',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Friday, 15 March 2024',
+      imageUrl: '/images/blog/IMG_6192-scaled-460x260_c.jpg',
+      content: [
+        "On the 8th of February, DISC was delighted to host a special one-day workshop on Social Media Marketing, led by the talented Ben Simpson.",
+        "Ben, who serves as a Governor of DISC, is not only a freelance social media manager and content creator but also a film-maker with a rich background in digital media.",
+        "The workshop covered content strategy, analytics, video hooks, and practical campaigns that interns immediately implemented for real social channels.",
+      ],
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+    },
+    'meetings-that-make-a-difference': {
+      title: 'Meetings that Make a Difference',
+      categoryTitle: 'Partnerships',
+      authorName: 'Andy Lovatt',
+      publishedAt: 'Tuesday, 23 January 2024',
+      imageUrl: '/images/blog/inclusiveJobs-460x260_c.png',
+      content: [
+        "Towards the back end of last year we had a great meeting with James Inman and his team at Inclusive Jobs.",
+        "Great meetings are rare and the butt of many negative quotes and jokes. It’s easy to arrange a meeting but much harder to make things happen afterwards.",
+        "Our partnership with Inclusive Jobs aligns with our vision to expand real, sustainable supported employment for neurodivergent individuals.",
+      ],
+      tags: ['careers', 'digital careers', 'Digital Training', 'inclusivity', 'neurodiverse', 'SEND'],
+    },
+    'dylan-apprenticeship-story': {
+      title: 'Dylan Apprenticeship Story',
+      categoryTitle: 'Case Studies',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Wednesday, 30 November 2022',
+      imageUrl: '/images/blog/dylan-460x260_c.png',
+      content: [
+        "Dylan originally joined Digital Advantage as part of our Digital Inc. internship in 2021.",
+        "The course was transformational for him, building his digital skills, along with confidence and timekeeping.",
+        "An asset to any company, Digital Advantage was keen to keep hold of Dylan and were delighted that the Co-op stepped forward to partially fund his apprenticeship.",
+      ],
+      tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
+    },
+    'launch-of-disc': {
+      title: 'Launch of DISC',
+      categoryTitle: 'DISC College',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Wednesday, 30 November 2022',
+      imageUrl: '/images/blog/DISC-logo-with-title-2-460x260_c.png',
+      content: [
+        "Digital Advantage is proud to announce that DISC, the Digital Independent Specialist College in Manchester, has celebrated completing it’s first half term by welcoming ten new interns.",
+        "They started their exciting journey in September, completing a four week induction, experimenting with digital photography, video, storyboarding, animation, graphics, scriptwriting, UX design, podcasting and web design.",
+        "DISC provides a supportive stepping stone towards high-value tech employment for young people with an EHCP.",
+      ],
+      tags: ['careers', 'digital careers', 'SEND'],
+    },
+    'pupils-with-send-learn-skills-for-digital-careers': {
+      title: 'Pupils with SEND learn skills for digital careers',
+      categoryTitle: 'Case Studies',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Thursday, 16 September 2021',
+      imageUrl: '/images/blog/WP_Digital_Advantage_SEND_140219_04-scaled-460x260_c.jpg',
+      content: [
+        "We have a case study featured in this month's issue of Children & Young People Now.",
+        "It looks at our Digital Inc. Agency that offered digital supported internships to young people with SEND.",
+        "It charts the progress of Beck, one of our interns, who we first met at one of our Pop-Up Digital Agency deliveries, showing the long-term impact of experiential learning.",
+      ],
+      tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
     },
   };
 
@@ -101,22 +166,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Recent update';
-    try {
-      return new Date(dateString).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      });
-    } catch {
-      return dateString;
-    }
-  };
-
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F8FAFC] text-slate-800">
-      <Header activePage="BLOG" phoneNumber={settings?.phoneNumber} />
+    <div className="min-h-screen flex flex-col font-sans bg-[#F4F6F8] text-slate-800">
+      <Header activePage="BLOG" phoneNumber={headerSettings?.phoneNumber} />
 
       <main className="flex-grow py-12 sm:py-16">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,17 +177,17 @@ export default async function BlogPostPage({ params }: PostPageProps) {
             href="/blog"
             className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-green-600 mb-8 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-2 py-1"
           >
-            ← Back to all posts
+            ← Back to Blog
           </Link>
 
           {/* Article Header */}
-          <header className="mb-10">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-3.5 py-1 bg-green-100 text-green-800 font-bold text-xs uppercase tracking-wider rounded-full">
+          <header className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm mb-8">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <span className="px-3 py-1 bg-green-100 text-green-800 font-bold text-xs uppercase tracking-wider rounded-full">
                 {article.categoryTitle || 'Article'}
               </span>
               <span className="text-xs font-semibold text-slate-400">
-                {formatDate(article.publishedAt)}
+                {article.publishedAt}
               </span>
             </div>
 
@@ -143,7 +195,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
               {article.title}
             </h1>
 
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-200 text-sm font-semibold text-slate-600">
+            <div className="flex items-center gap-3 pt-6 border-t border-slate-100 text-sm font-semibold text-slate-600">
               <div className="w-10 h-10 rounded-full bg-green-500/20 text-green-800 font-bold flex items-center justify-center">
                 {(article.authorName || 'DA')[0]}
               </div>
@@ -155,32 +207,49 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           </header>
 
           {/* Featured Image */}
-          {article.imageUrl && (
-            <div className="mb-12 rounded-3xl overflow-hidden border border-slate-200/80 shadow-lg max-h-[480px]">
+          {(article.imageUrl || article.image) && (
+            <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={article.imageUrl}
+                src={article.imageUrl || article.image}
                 alt={article.title}
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-cover max-h-[500px]"
               />
             </div>
           )}
 
           {/* Article Body */}
-          <div className="prose prose-slate prose-lg max-w-none space-y-6 text-slate-700 leading-relaxed font-normal">
-            {article.body ? (
-              <PortableText value={article.body} />
-            ) : (
-              article.content?.map((para: string, i: number) => (
-                <p key={i} className="text-lg leading-relaxed text-slate-700">
-                  {para}
-                </p>
-              ))
+          <div className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 shadow-sm">
+            <div className="prose prose-slate prose-lg max-w-none space-y-6 text-slate-700 leading-relaxed font-normal">
+              {article.body ? (
+                <PortableText value={article.body} />
+              ) : (
+                article.content?.map((para: string, i: number) => (
+                  <p key={i} className="text-lg leading-relaxed text-slate-700">
+                    {para}
+                  </p>
+                ))
+              )}
+            </div>
+
+            {/* Tags */}
+            {article.tags && (
+              <div className="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2 items-center">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Tags:</span>
+                {article.tags.map((tag: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full border border-slate-200/80"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             )}
           </div>
 
           {/* Return CTA */}
-          <div className="mt-16 pt-8 border-t border-slate-200 flex justify-between items-center">
+          <div className="mt-10 flex justify-between items-center">
             <Link
               href="/blog"
               className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-all"
@@ -188,16 +257,16 @@ export default async function BlogPostPage({ params }: PostPageProps) {
               ← Back to Blog
             </Link>
             <Link
-              href="/contact-us"
+              href="/#main-content"
               className="text-green-600 hover:text-green-700 font-bold"
             >
-              Contact our team →
+              Back to Home →
             </Link>
           </div>
         </article>
       </main>
 
-      <Footer settings={settings} />
+      <Footer settings={footerSettings} />
     </div>
   );
 }
