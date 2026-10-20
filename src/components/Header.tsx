@@ -7,13 +7,10 @@ interface HeaderProps {
 
 export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 2040' }: HeaderProps) {
   const navLinks = [
-    { name: 'HOME', href: '/' },
-    { name: 'POPUP', href: '/popup' },
-    { name: 'DISC', href: '/disc' },
-    { name: 'VIDEOS', href: '/videos' },
-    { name: 'BLOG', href: '/blog' },
-    { name: 'CONTACT', href: '/contact-us' },
-  ];
+  { label: "HOME", href: "/" },
+  { label: "DISC", href: "https://disc.ac.uk/" },
+  { label: "BLOG", href: "/blog" },
+];
 
   const cleanPhone = phoneNumber.replace(/[^0-9+]/g, '');
 
@@ -45,21 +42,36 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
         <nav aria-label="Main Navigation" className="hidden md:block">
           <ul className="flex space-x-1 items-center">
             {navLinks.map((link) => {
-              const isActive = activePage.toUpperCase() === link.name;
+              const isActive = activePage.toUpperCase() === link.label;
               return (
-                <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
-                      isActive 
-                        ? 'text-green-700 bg-green-100/70 shadow-sm' 
-                        : 'text-slate-600 hover:text-green-600 hover:bg-green-50'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              );
+  <li key={link.label}>
+    {link.label === "DISC" ? (
+      <a
+        href="https://disc.ac.uk/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+          isActive
+            ? "text-green-700 bg-green-100/70 shadow-sm"
+            : "text-slate-600 hover:text-green-600 hover:bg-green-50"
+        }`}
+      >
+        DISC
+      </a>
+    ) : (
+      <Link
+        href={link.href}
+        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+          isActive
+            ? "text-green-700 bg-green-100/70 shadow-sm"
+            : "text-slate-600 hover:text-green-600 hover:bg-green-50"
+        }`}
+      >
+        {link.label}
+      </Link>
+    )}
+  </li>
+);
             })}
             
             {/* Phone CTA */}
@@ -69,7 +81,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                 className="text-sm font-black text-slate-900 hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
                 aria-label={`Call us at ${phoneNumber}`}
               >
-                📞 {phoneNumber}
+                <span className="text-green-600">📞</span>  {phoneNumber}
               </a>
             </li>
           </ul>
