@@ -81,7 +81,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                 className="text-sm font-black text-slate-900 hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
                 aria-label={`Call us at ${phoneNumber}`}
               >
-                <span className="text-green-600">📞</span>  {phoneNumber}
+                <span className="text-green-600">☎</span>  {phoneNumber}
               </a>
             </li>
           </ul>
