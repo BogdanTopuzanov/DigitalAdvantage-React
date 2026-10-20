@@ -118,7 +118,7 @@ export default async function Home() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-30 bg-gradient-to-r from-green-200 to-emerald-100 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
           
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 id="hero-heading" className="text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
+            <h1 id="hero-heading" className="geomanist text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
               {homeSettings?.heroTitle || (
                 <>Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span></>
               )}
