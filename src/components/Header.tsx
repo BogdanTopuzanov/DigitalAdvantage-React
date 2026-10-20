@@ -25,17 +25,17 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
           aria-label="Digital Advantage Home"
         >
           {/* Real Green Logo */}
-          <div className="w-10 h-10 flex-shrink-0 relative flex items-center justify-center">
+          <div className="w-48 h-16 flex-shrink-0 relative flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/images/Logo-Footer-Green+Grey-Fine.svg" 
               alt="Digital Advantage" 
-              className="w-10 h-10 object-contain group-hover:scale-105 transition-transform"
+              className="w-48 h-16 object-contain group-hover:scale-105 transition-transform"
             />
           </div>
-          <span className="text-2xl font-black text-slate-900 tracking-tight group-hover:text-green-600 transition-colors">
+         {/* <span className="text-2xl font-black text-slate-900 tracking-tight group-hover:text-green-600 transition-colors">
             DIGITAL <span className="font-light text-slate-500">ADVANTAGE</span>
-          </span>
+          </span>*/}
         </Link>
         
         {/* Navigation */}
