@@ -11,7 +11,7 @@
   font-weight: 900;
   font-style: normal;
 }
-@font-family {
+@font-face {
   font-family: "Geomanist";
   src: url("/fonts/Geomanist-Regular.otf") format("opentype");
   font-weight: 400;

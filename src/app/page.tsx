@@ -123,7 +123,7 @@ export default async function Home() {
                 <>Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span></>
               )}
             </h1>
-            <p className="geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-medium">
+            <p className="geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-normal">
               {homeSettings?.heroSubtitle || (
                 <>Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, colleges and community settings across the Northwest, and through our Manchester city centre specialist college, DISC.</>
               )}
