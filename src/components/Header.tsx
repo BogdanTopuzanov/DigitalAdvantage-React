@@ -28,7 +28,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
           <div className="w-10 h-10 flex-shrink-0 relative flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
-              src="/images/logo-header.png" 
+              src="/images/Logo-Footer-Green+Grey-Fine.svg" 
               alt="Digital Advantage" 
               className="w-10 h-10 object-contain group-hover:scale-105 transition-transform"
             />
