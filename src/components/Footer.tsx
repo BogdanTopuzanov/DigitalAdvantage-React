@@ -41,6 +41,7 @@ export default function Footer({ settings }: FooterProps) {
 
   // 3. Fallback for Contact
   const defaultContact: FooterItem[] = [
+    { text: 'hello@digitaladvantage.org.uk', url: 'mailto:hello@digitaladvantage.org.uk', isLink: true },
     { text: 'Holyoake House, Hanover Street', isLink: false },
     { text: 'Manchester, M4 4AH', isLink: false },
     { 
