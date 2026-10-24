@@ -118,12 +118,12 @@ export default async function Home() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-30 bg-gradient-to-r from-green-200 to-emerald-100 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
           
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 id="hero-heading" className="text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
+            <h1 id="hero-heading" className="geomanist text-5xl sm:text-6xl font-black tracking-tight text-slate-900 mb-8 leading-tight">
               {homeSettings?.heroTitle || (
                 <>Hidden Talent <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">Revealed</span></>
               )}
             </h1>
-            <p className="text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-medium">
+            <p className="geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-normal">
               {homeSettings?.heroSubtitle || (
                 <>Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, colleges and community settings across the Northwest, and through our Manchester city centre specialist college, DISC.</>
               )}
@@ -134,61 +134,7 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Modern Programmes Cards Section (Configurable via Sanity) */}
-        <section className="py-20 bg-slate-50 relative" aria-labelledby="programs-heading">
-          <div className="text-center mb-16 max-w-3xl mx-auto px-4">
-            <h2 id="programs-heading" className="text-4xl font-black text-slate-900 tracking-tight">
-              {homeSettings?.programmesHeading || 'Just how do we reveal that talent?'}
-            </h2>
-            <p className="mt-4 text-slate-500 text-lg font-medium">
-              {homeSettings?.programmesSubheading || 'There are 5 Digital Advantage programmes available, each designed to get the best out of young people.'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {programmesList.map((prog: any, idx: number) => {
-              const bgGradients = [
-                'from-slate-300 to-slate-200',
-                'from-indigo-300 to-purple-200',
-                'from-amber-300 to-orange-200',
-                'from-emerald-300 to-teal-200',
-                'from-rose-300 to-pink-200'
-              ];
-              const gradient = prog.gradient || bgGradients[idx % bgGradients.length];
-
-              return (
-                <article key={idx} className="group bg-white rounded-3xl shadow-sm hover:shadow-xl border border-slate-100 overflow-hidden focus-within:ring-4 focus-within:ring-green-500 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
-                  <div>
-                    <div className="h-48 bg-slate-200 w-full overflow-hidden" aria-hidden="true">
-                      {prog.imageUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={prog.imageUrl} alt={prog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                      ) : (
-                        <div className={`w-full h-full bg-gradient-to-br ${gradient}`}></div>
-                      )}
-                    </div>
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-4 text-slate-900">{prog.title}</h3>
-                      <p className="text-slate-600 line-clamp-4 text-sm leading-relaxed">
-                        {prog.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-8 pt-0">
-                    <Link 
-                      href={prog.linkUrl || '/disc'} 
-                      className="inline-block font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 rounded-full px-6 py-3 transition-all"
-                      aria-label={`${prog.buttonText || 'Learn More'} for ${prog.title}`}
-                    >
-                      {prog.buttonText || 'Learn More'}
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
+       
         {/* Home News & Highlights Section (Independent from Blog) */}
         <section className="py-20 bg-slate-50 border-t border-slate-100" aria-labelledby="news-heading">
           <div className="text-center mb-16 max-w-3xl mx-auto px-4">
