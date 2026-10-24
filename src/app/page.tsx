@@ -303,65 +303,16 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* 5. CONTACT DIRECTORY */}
-        <section className="py-16 bg-slate-900 text-white" aria-labelledby="contact-directory-heading">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-10">
-              <span className="text-xs font-black tracking-widest text-green-400 uppercase bg-slate-800 px-3 py-1 rounded-full inline-block mb-3">
-                Get In Touch
-              </span>
-              <h2 id="contact-directory-heading" className="font-geomanist text-3xl font-black tracking-normal text-white">
-                Contact Directory
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">General Enquiries</p>
-                <a href="mailto:hello@digitaladvantage.org.uk" className="text-sm font-bold text-green-400 hover:underline break-all">
-                  hello@digitaladvantage.org.uk
-                </a>
-              </div>
-
-              <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">DISC &amp; Transitions</p>
-                <a href="mailto:clare.o@disc.ac.uk" className="text-sm font-bold text-green-400 hover:underline break-all">
-                  clare.o@disc.ac.uk
-                </a>
-              </div>
-
-              <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Safeguarding Lead</p>
-                <a href="mailto:caroline.d@disc.ac.uk" className="text-sm font-bold text-green-400 hover:underline break-all">
-                  caroline.d@disc.ac.uk
-                </a>
-              </div>
-
-              <div className="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/60">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Partnerships</p>
-                <a href="mailto:kirsty.bl@disc.ac.uk" className="text-sm font-bold text-green-400 hover:underline break-all">
-                  kirsty.bl@disc.ac.uk
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm text-slate-400">
-              <p>Telephone: <a href="tel:01614102040" className="text-white font-bold hover:text-green-400 transition-colors">(0161) 410 2040</a></p>
-              <p>Registered Charity No. 1188836. England &amp; Wales.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* 6. SUBTLE TESTIMONIAL QUOTE */}
+        {/* 5. SUBTLE TESTIMONIAL QUOTE */}
         {testimonial && (
-          <section className="bg-white py-16 border-b border-slate-100" aria-label="Partner Testimonial">
+          <section className="bg-white py-16 border-t border-slate-100" aria-label="Partner Testimonial">
             <div className="max-w-4xl mx-auto px-4 text-center">
               <blockquote className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug mb-6">
                 &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
               <cite className="not-italic text-sm text-slate-500 font-medium">
                 <span className="font-bold text-slate-800">{testimonial.author}</span>
-                {testimonial.role ? ` — ${testimonial.role}` : ""}
+                {testimonial.role ? ` - ${testimonial.role}` : ""}
               </cite>
             </div>
           </section>
