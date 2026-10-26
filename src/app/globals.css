@@ -12,7 +12,13 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: "Geomanist";
+  src: url("/fonts/Geomanist-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 @font-face {
   font-family: "Geomanist";
   src: url("/fonts/Geomanist-Regular.otf") format("opentype");
@@ -37,7 +43,7 @@ body {
 }
 .geomanist,
 .font-geomanist {
-  font-family: "Geomanist", system-ui, sans-serif;
+  font-family: "Geomanist", system-ui, sans-sf erif;
 }
 
 .geomanist-black,
