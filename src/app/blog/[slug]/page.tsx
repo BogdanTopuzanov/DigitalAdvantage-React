@@ -167,7 +167,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F4F6F8] text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800">
       <Header activePage="BLOG" phoneNumber={headerSettings?.phoneNumber} />
 
       <main className="flex-grow py-12 sm:py-16">
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-geomanist-black text-slate-900 tracking-tight leading-tight mb-6">
               {article.title}
             </h1>
 
