@@ -2,6 +2,7 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ExternalLink from "@/components/ExternalLink";
 
 export const revalidate = 0; // Disable static caching so updates from Sanity appear instantly
 
