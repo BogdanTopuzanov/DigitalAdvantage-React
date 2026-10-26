@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ExternalLink from "./ExternalLink";
 
 interface HeaderProps {
   activePage?: string;
@@ -46,10 +47,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               return (
   <li key={link.label}>
     {link.label === "DISC" ? (
-      <a
-        href="https://disc.ac.uk/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <ExternalLink
+         href="https://disc.ac.uk/"
         className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
           isActive
             ? "text-green-700 bg-green-100/70 shadow-sm"
@@ -57,7 +56,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
         }`}
       >
         DISC
-      </a>
+      </ExternalLink>
     ) : (
       <Link
         href={link.href}

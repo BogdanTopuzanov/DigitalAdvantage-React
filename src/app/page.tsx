@@ -86,14 +86,13 @@ export default async function Home() {
                 <h3 className="text-2xl font-black text-slate-900">
                   DISC - Digital Independent Specialist College
                 </h3>
-                <a 
+                <ExternalLink 
                   href="https://disc.ac.uk/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+              
                   className="text-sm font-bold text-green-600 hover:text-green-700 transition-colors inline-flex items-center gap-1"
                 >
                   Visit disc.ac.uk <span aria-hidden="true">↗</span>
-                </a>
+                </ExternalLink>
               </div>
 
               <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 font-normal">
@@ -225,14 +224,12 @@ export default async function Home() {
               </p>
               <p className="text-sm text-slate-600 leading-relaxed font-normal mb-4">
                 Our trustees&apos; annual report and accounts are filed with and publicly available from the Charity Commission for England and Wales at the{" "}
-                <a 
+                <ExternalLink 
                   href="https://register-of-charities.charitycommission.gov.uk/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
                   className="font-bold text-green-700 hover:underline"
                 >
                   Register of Charities
-                </a>.
+                </ExternalLink>.
               </p>
               <p className="text-sm text-slate-600 leading-relaxed font-normal">
                 Board details are available on request:{" "}
