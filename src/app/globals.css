@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1e293b;
 }
 
 @font-face {
@@ -12,6 +12,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Geomanist";
   src: url("/fonts/Geomanist-Bold.otf") format("opentype");
@@ -19,6 +20,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Geomanist";
   src: url("/fonts/Geomanist-Regular.otf") format("opentype");
@@ -34,26 +36,73 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Base body styles */
+/* Base: all body text uses Geomanist Regular */
 body {
   background: #ffffff;
   color: #1e293b;
   font-family: "Geomanist", system-ui, sans-serif;
   font-weight: 400;
-}
-.geomanist,
-.font-geomanist {
-  font-family: "Geomanist", system-ui, sans-sf erif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.geomanist-black,
+/* Headings keep Geomanist Black via Tailwind font-black */
+/* These utility classes can be applied anywhere */
+.font-geomanist {
+  font-family: "Geomanist", system-ui, sans-serif;
+}
+
 .font-geomanist-black {
   font-family: "Geomanist", system-ui, sans-serif;
   font-weight: 900;
 }
 
-.geomanist-regular,
+.font-geomanist-bold {
+  font-family: "Geomanist", system-ui, sans-serif;
+  font-weight: 700;
+}
+
 .font-geomanist-regular {
   font-family: "Geomanist", system-ui, sans-serif;
   font-weight: 400;
+}
+
+/* Legacy class aliases for compatibility */
+.geomanist { font-family: "Geomanist", system-ui, sans-serif; }
+.geomanist-black { font-family: "Geomanist", system-ui, sans-serif; font-weight: 900; }
+.geomanist-regular { font-family: "Geomanist", system-ui, sans-serif; font-weight: 400; }
+
+/* ---- External Link Modal Overlay ---- */
+.ext-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: ext-fade-in 0.15s ease;
+}
+
+.ext-modal {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 26rem;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  animation: ext-slide-up 0.2s ease;
+  position: relative;
+}
+
+@keyframes ext-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ext-slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ExternalLink from '@/components/ExternalLink';
 import { client } from '@/sanity/lib/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -180,7 +181,7 @@ export default async function BlogPage() {
   const allPosts = [...sanityPosts, ...authenticPosts.filter((ap) => !sanityPosts.some((sp) => sp.slug === ap.slug))];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F4F6F8] text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800">
       {/* Skip link */}
       <a
         href="#blog-main"
@@ -197,7 +198,7 @@ export default async function BlogPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl font-black font-geomanist text-slate-900 tracking-normal">
                 Blog
               </h1>
               <p className="mt-2 text-slate-500 font-medium text-sm">
@@ -226,10 +227,16 @@ export default async function BlogPage() {
               >
                 {/* Header: Title, Date, Author */}
                 <header className="mb-6">
-                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 hover:text-green-600 transition-colors leading-snug tracking-tight">
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.title}
-                    </Link>
+                  <h2 className="text-2xl sm:text-3xl font-black font-geomanist text-slate-900 hover:text-green-600 transition-colors leading-snug tracking-normal">
+                    {post.externalUrl ? (
+                      <ExternalLink href={post.externalUrl} className="hover:text-green-600 transition-colors">
+                        {post.title}
+                      </ExternalLink>
+                    ) : (
+                      <Link href={`/blog/${post.slug}`}>
+                        {post.title}
+                      </Link>
+                    )}
                   </h2>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-400">
                     <span className="text-slate-500">{post.date}</span>
@@ -284,13 +291,23 @@ export default async function BlogPage() {
 
                       {/* Read More button & No Comments badge */}
                       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-                        <Link
-                          href={`/blog/${post.slug}`}
-                          className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
-                        >
-                          Read more
-                          <span aria-hidden="true">→</span>
-                        </Link>
+                        {post.externalUrl ? (
+                          <ExternalLink
+                            href={post.externalUrl}
+                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
+                          >
+                            Read more
+                            <span aria-hidden="true">↗</span>
+                          </ExternalLink>
+                        ) : (
+                          <Link
+                            href={`/blog/${post.slug}`}
+                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
+                          >
+                            Read more
+                            <span aria-hidden="true">→</span>
+                          </Link>
+                        )}
 
                         <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
                           <svg className="w-4 h-4 text-slate-300" fill="currentColor" viewBox="0 0 20 20">

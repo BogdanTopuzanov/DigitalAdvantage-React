@@ -105,15 +105,15 @@ export default async function Home() {
                   Programmes Include
                 </h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <li className="flex items-center gap-2 font-bold text-slate-800 text-sm">
+                  <li className="flex items-center gap-2 font-bold text-slate-800 text-base">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     Alternative Provision
                   </li>
-                  <li className="flex items-center gap-2 font-bold text-slate-800 text-sm">
+                  <li className="flex items-center gap-2 font-bold text-slate-800 text-base">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     Pre-Internship Programme
                   </li>
-                  <li className="flex items-center gap-2 font-bold text-slate-800 text-sm">
+                  <li className="flex items-center gap-2 font-bold text-slate-800 text-base">
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     Supported Internship
                   </li>
@@ -187,23 +187,23 @@ export default async function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-sm text-slate-800">Ofsted Good Provider</span>
+                  <span className="font-bold text-base text-slate-800">Ofsted Good Provider</span>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-sm text-slate-800">Natspec Innovative Routes to Employment Award 2025</span>
+                  <span className="font-bold text-base text-slate-800">Natspec Innovative Routes to Employment Award 2025</span>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-sm text-slate-800">Autistica NDEI Gold Award</span>
+                  <span className="font-bold text-base text-slate-800">Autistica NDEI Gold Award</span>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-sm text-slate-800">Cyber Essentials Plus Certified</span>
+                  <span className="font-bold text-base text-slate-800">Cyber Essentials Plus Certified</span>
                 </div>
                 <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-sm text-slate-800">GM Skills Awards 2026 (Shortlisted)</span>
+                  <span className="font-bold text-base text-slate-800">GM Skills Awards 2026 (Shortlisted)</span>
                 </div>
               </div>
             </div>
