@@ -61,7 +61,7 @@ export default async function Home() {
             </p>
 
             <div className="mt-10 p-6 sm:p-8 bg-slate-50 border-l-4 border-green-500 rounded-r-2xl text-left max-w-3xl mx-auto shadow-xs">
-              <p className="text-base sm:text-lg font-bold text-slate-800 leading-relaxed">
+             <p className="font-geomanist text-base sm:text-lg font-bold text-slate-800 leading-relaxed">
                 Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
               </p>
             </div>
