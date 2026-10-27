@@ -88,9 +88,9 @@ body {
 
 .ext-modal {
   background: #ffffff;
-  border-radius: 1rem;
-  padding: 2rem;
-  max-width: 26rem;
+  border-radius: 1.25rem;
+  padding: 2.75rem 2rem 2.25rem;
+  max-width: 28rem;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0,0,0,0.18);
   animation: ext-slide-up 0.2s ease;

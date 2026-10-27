@@ -39,8 +39,6 @@ export default async function Home() {
         
         {/* 1. HERO & MISSION */}
         <section className="relative overflow-hidden pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-slate-100" aria-labelledby="hero-heading">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-25 bg-gradient-to-r from-green-200 to-emerald-100 blur-3xl rounded-full pointer-events-none" aria-hidden="true"></div>
-          
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 id="hero-heading" className="font-geomanist text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 tracking-normal mb-8 leading-tight">
               {homeSettings?.heroTitle || (
