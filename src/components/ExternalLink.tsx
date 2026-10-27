@@ -99,7 +99,7 @@ export default function ExternalLink({
 
             <h2
               id="ext-modal-title"
-              className="text-center text-lg font-bold text-slate-900 mb-2"
+              className="text-center text-lg font-semibold text-slate-900 mb-2"
             >
               You&apos;re leaving Digital Advantage
             </h2>
@@ -109,7 +109,7 @@ export default function ExternalLink({
             >
               This link takes you to an external website:
               <br />
-              <span className="font-bold text-slate-700 break-all">{href}</span>
+              <span className="text-slate-700 font-normal break-all">{href}</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -120,10 +120,10 @@ export default function ExternalLink({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-colors focus:outline-none focus:ring-4 focus:ring-green-400"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-4 focus:ring-green-400"
               >
                 Continue
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" aria-hidden="true">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
@@ -132,7 +132,7 @@ export default function ExternalLink({
               <button
                 ref={cancelRef}
                 onClick={() => setOpen(false)}
-                className="flex-1 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold rounded-lg transition-colors focus:outline-none focus:ring-4 focus:ring-slate-300"
+                className="flex-1 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-4 focus:ring-slate-300"
               >
                 Stay on this page
               </button>
