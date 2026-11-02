@@ -112,7 +112,7 @@ export default function Footer({ settings }: FooterProps) {
               <img 
                 src="/images/logo-footer.png" 
                 alt="Digital Advantage Logo" 
-                className="h-16 sm:h-20 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
+                className="h-12 sm:h-16 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs sm:max-w-sm">

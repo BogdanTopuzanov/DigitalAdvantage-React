@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -37,21 +38,38 @@ export default async function Home() {
       {/* MAIN CONTENT - Clean editorial holding layout */}
       <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>
         
-        {/* 1. HERO & MISSION */}
-        <section className="relative overflow-hidden pt-20 pb-16 lg:pt-28 lg:pb-24 border-b border-slate-100" aria-labelledby="hero-heading">
+        {/* 1. HERO — dark bg + isometric SVG background */}
+        <section
+          className="relative overflow-hidden pt-20 pb-16 lg:pt-28 lg:pb-24"
+          aria-labelledby="hero-heading"
+          style={{ backgroundColor: "#111111" }}
+        >
+          <div className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+            <Image
+              src="/images/da-isometric-band.svg"
+              alt=""
+              fill
+              className="object-cover object-center opacity-60"
+              priority
+            />
+          </div>
+
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 id="hero-heading" className="font-geomanist text-4xl sm:text-6xl lg:text-7xl font-black text-slate-900 tracking-normal mb-8 leading-tight">
+            <h1
+              id="hero-heading"
+              className="font-geomanist text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-normal mb-8 leading-tight"
+            >
               {homeSettings?.heroTitle || (
                 <>
                   Hidden Talent{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
                     Revealed
                   </span>
                 </>
               )}
             </h1>
 
-            <p className="font-geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl mx-auto font-normal">
+            <p className="font-geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-300 max-w-3xl mx-auto font-normal">
               {homeSettings?.heroSubtitle || (
                 <>
                   Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, schools, colleges and community settings across the North West, and through our Manchester city centre specialist college, DISC.
@@ -59,8 +77,8 @@ export default async function Home() {
               )}
             </p>
 
-            <div className="mt-10 p-6 sm:p-8 bg-slate-50 border-l-4 border-green-500 rounded-r-2xl text-left max-w-3xl mx-auto shadow-xs">
-              <p className="text-base sm:text-lg font-bold text-slate-800 leading-relaxed">
+            <div className="mt-10 p-6 sm:p-8 bg-white/10 border-l-4 border-green-400 rounded-r-2xl text-left max-w-3xl mx-auto backdrop-blur-sm">
+              <p className="text-base sm:text-lg font-bold text-white leading-relaxed">
                 Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
               </p>
             </div>
@@ -127,7 +145,7 @@ export default async function Home() {
             </div>
 
             {/* Outreach Programmes */}
-            <div className="border-b border-slate-100 pb-12">
+            <div className="pb-4">
               <h3 className="text-2xl font-black text-slate-900 mb-4">
                 Outreach Programmes
               </h3>
@@ -135,21 +153,27 @@ export default async function Home() {
                 We deliver funded digital skills programmes directly into schools and colleges across Greater Manchester, Lancashire, Cheshire, West Yorkshire and beyond. Our outreach work is commissioned by local authorities, combined authorities and regional skills partnerships.
               </p>
 
-              <div className="bg-slate-50 rounded-2xl p-6 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h4 className="text-base font-bold text-slate-900">
-                    Your DNA (Your Digital News Agency)
-                  </h4>
-                  <p className="text-sm text-slate-500 mt-1">
-                    An intensive and transformative digital work experience programme.
-                  </p>
+              <div className="bg-slate-50 rounded-2xl p-6 mb-6">
+                <h4 className="text-base font-bold text-slate-900 mb-1">
+                  Your DNA (Your Digital News Agency)
+                </h4>
+                <p className="text-sm text-slate-500 mb-5">
+                  An intensive and transformative digital work experience programme.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/blog/your-dna"
+                    className="inline-flex items-center gap-2 font-bold text-sm bg-white border border-slate-200 px-4 py-2 rounded-lg text-green-700 hover:border-green-400 hover:shadow-sm transition-all"
+                  >
+                    More about Your DNA <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link
+                    href="/blog/your-dna"
+                    className="inline-flex items-center gap-2 font-bold text-sm bg-white border border-slate-200 px-4 py-2 rounded-lg text-green-700 hover:border-green-400 hover:shadow-sm transition-all"
+                  >
+                    See the Your DNA showcase <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
-                <Link 
-                  href="/blog/your-dna" 
-                  className="inline-flex items-center gap-2 font-bold text-sm bg-white border border-slate-200 px-4 py-2 rounded-lg text-green-700 hover:border-green-400 hover:shadow-xs transition-all shrink-0"
-                >
-                  See the Your DNA showcase <span aria-hidden="true">→</span>
-                </Link>
               </div>
 
               <p className="text-sm text-slate-600 leading-relaxed font-normal">
@@ -162,51 +186,29 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* 3. OUR REACH & AWARDS */}
-        <section className="py-16 bg-slate-50 border-y border-slate-100" aria-labelledby="reach-heading">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mb-12">
-              <span className="text-xs font-black tracking-widest text-green-700 uppercase bg-green-100 px-3 py-1 rounded-full inline-block mb-3">
-                Impact & Recognition
-              </span>
-              <h2 id="reach-heading" className="font-geomanist text-3xl sm:text-4xl font-black text-slate-900 tracking-normal">
-                Our Reach
-              </h2>
-              <p className="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-                Since 2014, Digital Advantage has worked with thousands of young people across the North West and beyond. Our long-term funded partnerships include Lancashire County Council and Greater Manchester Combined Authority. We hold the Neurodiversity Employment Index (NDEI) Gold Award from Autistica, the UK&apos;s leading autism research and campaigning organisation.
-              </p>
-            </div>
+        {/* IMAGE — A2 CH(01), cropped 25% top + 25% bottom */}
+        <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
+          <Image
+            src="/images/A2 CH(01).png"
+            alt="DISC student artwork"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center 25%" }}
+            sizes="100vw"
+          />
+        </div>
 
-            {/* Recognition Badges */}
-            <div className="pt-6">
-              <h3 className="text-xs font-black tracking-widest text-slate-500 uppercase mb-4">
-                Recognition and Accreditations
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-base text-slate-800">Ofsted Good Provider</span>
-                </div>
-                <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-base text-slate-800">Natspec Innovative Routes to Employment Award 2025</span>
-                </div>
-                <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-base text-slate-800">Autistica NDEI Gold Award</span>
-                </div>
-                <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-base text-slate-800">Cyber Essentials Plus Certified</span>
-                </div>
-                <div className="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex items-center gap-3">
-                  <span className="w-3 h-3 rounded-full bg-green-500 shrink-0"></span>
-                  <span className="font-bold text-base text-slate-800">GM Skills Awards 2026 (Shortlisted)</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* IMAGE — Kieron Ridler, before Governance */}
+        <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
+          <Image
+            src="/images/IMG_7667_Kieron Ridler.PNG"
+            alt="DISC students on a trip"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center 25%" }}
+            sizes="100vw"
+          />
+        </div>
 
         {/* 4. GOVERNANCE, SAFEGUARDING & POLICIES */}
         <section className="py-16 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="governance-heading">
@@ -253,18 +255,28 @@ export default async function Home() {
                   caroline.d@disc.ac.uk
                 </a>)
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <a 
-                  href="#" 
-                  className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
+              <div className="flex flex-col gap-3 pt-2">
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
                 >
-                  📄 Download DA Safeguarding Policy
+                  <span className="w-8 h-8 bg-red-600 rounded flex items-center justify-center shrink-0 group-hover:bg-red-700 transition-colors" aria-hidden="true">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/>
+                    </svg>
+                  </span>
+                  Download DA Safeguarding Policy
                 </a>
-                <a 
-                  href="#" 
-                  className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-lg transition-colors inline-flex items-center gap-1.5"
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
                 >
-                  📄 Download DISC Safeguarding Policy
+                  <span className="w-8 h-8 bg-red-600 rounded flex items-center justify-center shrink-0 group-hover:bg-red-700 transition-colors" aria-hidden="true">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 01-2-2V4z"/>
+                    </svg>
+                  </span>
+                  Download DISC Safeguarding Policy
                 </a>
               </div>
             </div>
@@ -298,6 +310,17 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* FILM STRIP */}
+        <div className="w-full overflow-hidden" aria-hidden="true">
+          <Image
+            src="/images/film-strip-2x.svg"
+            alt=""
+            width={1920}
+            height={200}
+            className="w-full h-auto block"
+          />
+        </div>
 
         {/* 5. SUBTLE TESTIMONIAL QUOTE */}
         {testimonial && (
