@@ -40,22 +40,12 @@ export default async function Home() {
         
         {/* 1. HERO — dark bg + isometric SVG background */}
         <section
-          className="relative overflow-hidden pt-20 pb-16 lg:pt-28 lg:pb-24"
+          className="relative overflow-hidden"
           aria-labelledby="hero-heading"
-          style={{ backgroundColor: "#111111" }}
+          style={{ backgroundColor: "#3A3A3A" }}
         >
-          {/* SVG прибита к низу секции — узоры снизу, сплошной цвет сверху */}
-          <div className="absolute inset-x-0 bottom-0 h-full pointer-events-none" aria-hidden="true">
-            <Image
-              src="/images/da-isometric-band.svg"
-              alt=""
-              fill
-              className="object-cover object-bottom opacity-70"
-              priority
-            />
-          </div>
-
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Top text block — extended solid #3A3A3A background */}
+          <div className="pt-20 pb-8 lg:pt-28 lg:pb-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <h1
               id="hero-heading"
               className="font-geomanist text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-normal mb-8 leading-tight"
@@ -70,15 +60,28 @@ export default async function Home() {
               )}
             </h1>
 
-            <p className="font-geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-300 max-w-3xl mx-auto font-normal">
+            <p className="font-geomanist-regular text-lg sm:text-xl leading-relaxed text-slate-200 max-w-3xl mx-auto font-normal">
               {homeSettings?.heroSubtitle || (
                 <>
                   Digital Advantage is a Manchester-based charity founded to help young people with Special Educational Needs and Disabilities (SEND) build the creative, digital and employability skills they need to thrive in the modern economy. We work with young people up to the age of 24, schools, colleges and community settings across the North West, and through our Manchester city centre specialist college, DISC.
                 </>
               )}
             </p>
+          </div>
 
-            <div className="mt-10 p-6 sm:p-8 text-left max-w-3xl mx-auto">
+          {/* Lower block with SVG background — quote at top edge, patterns below unobstructed */}
+          <div className="relative w-full min-h-[380px] sm:min-h-[460px] lg:min-h-[520px] pb-48 sm:pb-56 lg:pb-64 overflow-hidden">
+            <div className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+              <Image
+                src="/images/da-isometric-band.svg"
+                alt=""
+                fill
+                className="object-cover object-bottom"
+                priority
+              />
+            </div>
+
+            <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 text-left">
               <p className="text-base sm:text-lg font-bold text-white leading-relaxed">
                 Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
               </p>
@@ -148,13 +151,21 @@ export default async function Home() {
         </section>
 
         {/* IMAGE — A2 CH(01), между What We Do (DISC) и Outreach */}
-        <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
+        <div
+          className="w-full overflow-hidden relative"
+          style={{
+            aspectRatio: "3390 / 1404",
+            maxHeight: "560px",
+            minHeight: "280px",
+          }}
+          aria-hidden="true"
+        >
           <Image
             src="/images/A2 CH(01).png"
             alt="DISC student artwork"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 25%" }}
+            style={{ objectPosition: "center 75%" }}
             sizes="100vw"
           />
         </div>
@@ -199,13 +210,21 @@ export default async function Home() {
         </section>
 
         {/* IMAGE — Kieron Ridler, before Governance */}
-        <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
+        <div
+          className="w-full overflow-hidden relative"
+          style={{
+            aspectRatio: "4961 / 2280",
+            maxHeight: "580px",
+            minHeight: "300px",
+          }}
+          aria-hidden="true"
+        >
           <Image
             src="/images/IMG_7667_Kieron Ridler.PNG"
             alt="DISC students on a trip"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 25%" }}
+            style={{ objectPosition: "center 85%" }}
             sizes="100vw"
           />
         </div>
