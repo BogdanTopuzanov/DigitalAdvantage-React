@@ -169,7 +169,7 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
-        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-bold">
           DISC Supported Intern: Clara &copy;2025
         </p>
 
@@ -234,7 +234,7 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
-        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-bold">
           DISC Supported Intern: Kieron Ridler &copy;2025
         </p>
 
