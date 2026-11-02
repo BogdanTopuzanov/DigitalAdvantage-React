@@ -154,7 +154,7 @@ export default async function Home() {
         <div
           className="w-full overflow-hidden relative"
           style={{
-            aspectRatio: "3390 / 1404",
+            aspectRatio: "3390 / 1334",
             maxHeight: "560px",
             minHeight: "280px",
           }}
@@ -165,7 +165,7 @@ export default async function Home() {
             alt="DISC student artwork"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 75%" }}
+            style={{ objectPosition: "center 65%" }}
             sizes="100vw"
           />
         </div>
@@ -213,7 +213,7 @@ export default async function Home() {
         <div
           className="w-full overflow-hidden relative"
           style={{
-            aspectRatio: "4961 / 2280",
+            aspectRatio: "4961 / 1929",
             maxHeight: "580px",
             minHeight: "300px",
           }}
@@ -224,7 +224,7 @@ export default async function Home() {
             alt="DISC students on a trip"
             fill
             className="object-cover"
-            style={{ objectPosition: "center 85%" }}
+            style={{ objectPosition: "center 67%" }}
             sizes="100vw"
           />
         </div>
