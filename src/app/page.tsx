@@ -44,12 +44,13 @@ export default async function Home() {
           aria-labelledby="hero-heading"
           style={{ backgroundColor: "#111111" }}
         >
-          <div className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+          {/* SVG прибита к низу секции — узоры снизу, сплошной цвет сверху */}
+          <div className="absolute inset-x-0 bottom-0 h-full pointer-events-none" aria-hidden="true">
             <Image
               src="/images/da-isometric-band.svg"
               alt=""
               fill
-              className="object-cover object-center opacity-60"
+              className="object-cover object-bottom opacity-70"
               priority
             />
           </div>
@@ -77,7 +78,7 @@ export default async function Home() {
               )}
             </p>
 
-            <div className="mt-10 p-6 sm:p-8 bg-white/10 border-l-4 border-green-400 rounded-r-2xl text-left max-w-3xl mx-auto backdrop-blur-sm">
+            <div className="mt-10 p-6 sm:p-8 text-left max-w-3xl mx-auto">
               <p className="text-base sm:text-lg font-bold text-white leading-relaxed">
                 Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
               </p>
@@ -143,50 +144,10 @@ export default async function Home() {
                 </a>
               </p>
             </div>
-
-            {/* Outreach Programmes */}
-            <div className="pb-4">
-              <h3 className="text-2xl font-black text-slate-900 mb-4">
-                Outreach Programmes
-              </h3>
-              <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 font-normal">
-                We deliver funded digital skills programmes directly into schools and colleges across Greater Manchester, Lancashire, Cheshire, West Yorkshire and beyond. Our outreach work is commissioned by local authorities, combined authorities and regional skills partnerships.
-              </p>
-
-              <div className="bg-slate-50 rounded-2xl p-6 mb-6">
-                <h4 className="text-base font-bold text-slate-900 mb-1">
-                  Your DNA (Your Digital News Agency)
-                </h4>
-                <p className="text-sm text-slate-500 mb-5">
-                  An intensive and transformative digital work experience programme.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/blog/your-dna"
-                    className="inline-flex items-center gap-2 font-bold text-sm bg-white border border-slate-200 px-4 py-2 rounded-lg text-green-700 hover:border-green-400 hover:shadow-sm transition-all"
-                  >
-                    More about Your DNA <span aria-hidden="true">→</span>
-                  </Link>
-                  <Link
-                    href="/blog/your-dna"
-                    className="inline-flex items-center gap-2 font-bold text-sm bg-white border border-slate-200 px-4 py-2 rounded-lg text-green-700 hover:border-green-400 hover:shadow-sm transition-all"
-                  >
-                    See the Your DNA showcase <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </div>
-
-              <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                All outreach programmes require appropriate funding to be in place prior to delivery. To discuss a commission or partnership, contact us at:{" "}
-                <a href="mailto:hello@digitaladvantage.org.uk" className="font-bold text-green-700 hover:underline">
-                  hello@digitaladvantage.org.uk
-                </a>
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* IMAGE — A2 CH(01), cropped 25% top + 25% bottom */}
+        {/* IMAGE — A2 CH(01), между What We Do (DISC) и Outreach */}
         <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
           <Image
             src="/images/A2 CH(01).png"
@@ -197,6 +158,45 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
+
+        {/* OUTREACH PROGRAMMES — отдельная секция */}
+        <section className="py-16 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="outreach-heading">
+            {/* Outreach Programmes */}
+            <div className="pb-4">
+              <h3 id="outreach-heading" className="text-2xl font-black text-slate-900 mb-4">
+                Outreach Programmes
+              </h3>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed mb-6 font-normal">
+                We deliver funded digital skills programmes directly into schools and colleges across Greater Manchester, Lancashire, Cheshire, West Yorkshire and beyond. Our outreach work is commissioned by local authorities, combined authorities and regional skills partnerships.
+              </p>
+
+              <p className="text-slate-700 font-bold mb-2">Your DNA (Your Digital News Agency)</p>
+              <p className="text-sm text-slate-500 mb-5">
+                An intensive and transformative digital work experience programme.
+              </p>
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Link
+                  href="/blog/your-dna"
+                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 px-5 py-2.5 rounded-full text-slate-800 hover:border-green-500 hover:text-green-700 transition-all"
+                >
+                  More about Your DNA <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  href="/blog/your-dna"
+                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 px-5 py-2.5 rounded-full text-slate-800 hover:border-green-500 hover:text-green-700 transition-all"
+                >
+                  See the Your DNA showcase <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+
+              <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                All outreach programmes require appropriate funding to be in place prior to delivery. To discuss a commission or partnership, contact us at:{" "}
+                <a href="mailto:hello@digitaladvantage.org.uk" className="font-bold text-green-700 hover:underline">
+                  hello@digitaladvantage.org.uk
+                </a>
+              </p>
+            </div>
+        </section>
 
         {/* IMAGE — Kieron Ridler, before Governance */}
         <div className="w-full overflow-hidden relative" style={{ height: "50vh", minHeight: "280px" }} aria-hidden="true">
@@ -258,22 +258,24 @@ export default async function Home() {
               <div className="flex flex-col gap-3 pt-2">
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
+                  className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
                 >
-                  <span className="w-8 h-8 bg-red-600 rounded flex items-center justify-center shrink-0 group-hover:bg-red-700 transition-colors" aria-hidden="true">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/>
+                  <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
+                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9">
+                      <rect width="36" height="36" rx="6" fill="#E53E3E"/>
+                      <text x="18" y="24" textAnchor="middle" fontSize="11" fontWeight="bold" fill="white" fontFamily="Arial, sans-serif">PDF</text>
                     </svg>
                   </span>
                   Download DA Safeguarding Policy
                 </a>
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
+                  className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 hover:text-green-700 transition-colors group"
                 >
-                  <span className="w-8 h-8 bg-red-600 rounded flex items-center justify-center shrink-0 group-hover:bg-red-700 transition-colors" aria-hidden="true">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 01-2-2V4z"/>
+                  <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
+                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9">
+                      <rect width="36" height="36" rx="6" fill="#E53E3E"/>
+                      <text x="18" y="24" textAnchor="middle" fontSize="11" fontWeight="bold" fill="white" fontFamily="Arial, sans-serif">PDF</text>
                     </svg>
                   </span>
                   Download DISC Safeguarding Policy
