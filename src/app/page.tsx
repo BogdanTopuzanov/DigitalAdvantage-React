@@ -169,6 +169,9 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
+          DISC Supported Intern: Clara &copy;2025
+        </p>
 
         {/* OUTREACH PROGRAMMES — отдельная секция */}
         <section className="py-16 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="outreach-heading">
@@ -231,6 +234,9 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
+          DISC Supported Intern: Kieron Ridler &copy;2025
+        </p>
 
         {/* 4. GOVERNANCE, SAFEGUARDING & POLICIES */}
         <section className="py-16 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="governance-heading">
