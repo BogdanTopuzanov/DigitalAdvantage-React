@@ -170,7 +170,7 @@ export default async function Home() {
           />
         </div>
         <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
-          DISC Supported Intern: Clara &copy;2025
+          DISC Supported Intern: <p className="font-bold text-black">Clara</p> &copy;2025
         </p>
 
         {/* OUTREACH PROGRAMMES — отдельная секция */}
@@ -235,7 +235,7 @@ export default async function Home() {
           />
         </div>
         <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
-          DISC Supported Intern: <p className="font-black">Kieron Ridler</p> &copy;2025
+          DISC Supported Intern: <p className="font-bold text-black">Kieron Ridler</p> &copy;2025
         </p>
 
         {/* 4. GOVERNANCE, SAFEGUARDING & POLICIES */}
