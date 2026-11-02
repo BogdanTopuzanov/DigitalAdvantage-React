@@ -169,7 +169,7 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
-        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-bold">
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
           DISC Supported Intern: Clara &copy;2025
         </p>
 
@@ -234,9 +234,9 @@ export default async function Home() {
             sizes="100vw"
           />
         </div>
-        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-bold">
-          DISC Supported Intern: Kieron Ridler &copy;2025
-        </p>
+        <p className="pt-2 pb-1 text-center text-xs sm:text-sm text-slate-500 font-medium">
+          DISC Supported Intern: <p className="font-black">Kieron Ridler</p> &copy;2025
+        </p><--li className="flex items-center gap-2 font-bold text-slate-800 text-base">className="text-2xl font-black text-slate-900 mb-4"
 
         {/* 4. GOVERNANCE, SAFEGUARDING & POLICIES */}
         <section className="py-16 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="governance-heading">
