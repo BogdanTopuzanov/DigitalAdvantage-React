@@ -213,7 +213,7 @@ export default async function Home() {
         <div
           className="w-full overflow-hidden relative"
           style={{
-            aspectRatio: "4862 / 1754",
+            aspectRatio: "4862 / 1579",
             maxHeight: "640px",
             minHeight: "260px",
           }}
@@ -225,7 +225,7 @@ export default async function Home() {
             fill
             className="object-cover"
             style={{
-              objectPosition: "center 60%",
+              objectPosition: "center 55%",
               transform: "scaleX(1.0205)",
             }}
             sizes="100vw"
