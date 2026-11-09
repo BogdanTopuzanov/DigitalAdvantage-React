@@ -99,7 +99,7 @@ export default function Footer({ settings }: FooterProps) {
   };
 
   return (
-    <footer className="bg-slate-900 text-white py-16 border-t border-slate-800" aria-labelledby="footer-heading">
+    <footer className="bg-slate-900 dark:bg-black text-white py-16 border-t border-slate-800 dark:border-slate-900 transition-colors" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">Site Footer</h2>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,7 +112,7 @@ export default function Footer({ settings }: FooterProps) {
               <img 
                 src="/images/logo-footer.png" 
                 alt="Digital Advantage Logo" 
-                className="h-12 sm:h-16 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
+                className="h-7 sm:h-10 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xs sm:max-w-sm">

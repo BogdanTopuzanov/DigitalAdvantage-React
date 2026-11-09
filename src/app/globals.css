@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #1e293b;
@@ -44,6 +46,11 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background: #020617;
+  color: #f1f5f9;
 }
 
 /* Headings keep Geomanist Black via Tailwind font-black */
@@ -96,6 +103,12 @@ body {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
   animation: ext-slide-up 0.2s ease;
   position: relative;
+}
+
+.dark .ext-modal {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes ext-fade-in {

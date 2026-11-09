@@ -84,9 +84,9 @@ export default function ExternalLink({
         >
           <div className="ext-modal">
             {/* Icon */}
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-50 border border-green-100 mb-4 mx-auto">
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-50 dark:bg-green-950/60 border border-green-100 dark:border-green-900 mb-4 mx-auto">
               <svg
-                className="w-6 h-6 text-green-600"
+                className="w-6 h-6 text-green-600 dark:text-green-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
@@ -99,17 +99,17 @@ export default function ExternalLink({
 
             <h2
               id="ext-modal-title"
-              className="text-center text-lg font-semibold text-slate-900 mb-2"
+              className="text-center text-lg font-semibold text-slate-900 dark:text-white mb-2"
             >
               You&apos;re leaving Digital Advantage
             </h2>
             <p
               id="ext-modal-desc"
-              className="text-center text-sm text-slate-500 mb-6 leading-relaxed"
+              className="text-center text-sm text-slate-500 dark:text-slate-400 mb-6 leading-relaxed"
             >
               This link takes you to an external website:
               <br />
-              <span className="text-slate-700 font-normal break-all">{href}</span>
+              <span className="text-slate-700 dark:text-slate-200 font-normal break-all">{href}</span>
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
@@ -132,7 +132,7 @@ export default function ExternalLink({
               <button
                 ref={cancelRef}
                 onClick={() => setOpen(false)}
-                className="flex-1 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-300"
+                className="flex-1 px-5 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-slate-700"
               >
                 Stay on this page
               </button>

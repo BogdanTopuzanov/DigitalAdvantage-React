@@ -167,7 +167,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors">
       <Header activePage="BLOG" phoneNumber={headerSettings?.phoneNumber} />
 
       <main className="flex-grow py-12 sm:py-16">
@@ -175,40 +175,40 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           {/* Back button */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-green-600 mb-8 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-2 py-1"
+            className="inline-flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-green-600 dark:hover:text-green-400 mb-8 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500 rounded px-2 py-1"
           >
             ← Back to Blog
           </Link>
 
           {/* Article Header */}
-          <header className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm mb-8">
+          <header className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-sm mb-8 transition-colors">
             <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-green-100 text-green-800 font-bold text-xs uppercase tracking-wider rounded-full">
+              <span className="px-3 py-1 bg-green-100 dark:bg-green-950/70 text-green-800 dark:text-green-300 font-bold text-xs uppercase tracking-wider rounded-full">
                 {article.categoryTitle || 'Article'}
               </span>
-              <span className="text-xs font-semibold text-slate-400">
+              <span className="text-xs font-semibold text-slate-400 dark:text-slate-500">
                 {article.publishedAt}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-geomanist-black text-slate-900 tracking-tight leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-geomanist-black text-slate-900 dark:text-white tracking-tight leading-tight mb-6">
               {article.title}
             </h1>
 
-            <div className="flex items-center gap-3 pt-6 border-t border-slate-100 text-sm font-semibold text-slate-600">
-              <div className="w-10 h-10 rounded-full bg-green-500/20 text-green-800 font-bold flex items-center justify-center">
+            <div className="flex items-center gap-3 pt-6 border-t border-slate-100 dark:border-slate-800 text-sm font-semibold text-slate-600 dark:text-slate-400">
+              <div className="w-10 h-10 rounded-full bg-green-500/20 text-green-800 dark:text-green-300 font-bold flex items-center justify-center">
                 {(article.authorName || 'DA')[0]}
               </div>
               <div>
-                <p className="text-slate-900 font-bold">{article.authorName || 'Digital Advantage'}</p>
-                <p className="text-xs text-slate-500">Author & Contributor</p>
+                <p className="text-slate-900 dark:text-white font-bold">{article.authorName || 'Digital Advantage'}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Author & Contributor</p>
               </div>
             </div>
           </header>
 
           {/* Featured Image */}
           {(article.imageUrl || article.image || fallbackArticles[slug]?.imageUrl) && (
-            <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+            <div className="mb-8 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-slate-100 dark:bg-slate-800">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={article.imageUrl || article.image || fallbackArticles[slug]?.imageUrl}
@@ -219,13 +219,13 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           )}
 
           {/* Article Body */}
-          <div className="bg-white rounded-2xl border border-slate-200 p-8 sm:p-12 shadow-sm">
-            <div className="prose prose-slate prose-lg max-w-none space-y-6 text-slate-700 leading-relaxed font-normal">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-sm transition-colors">
+            <div className="prose prose-slate dark:prose-invert prose-lg max-w-none space-y-6 text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
               {article.body ? (
                 <PortableText value={article.body} />
               ) : (
                 article.content?.map((para: string, i: number) => (
-                  <p key={i} className="text-lg leading-relaxed text-slate-700">
+                  <p key={i} className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
                     {para}
                   </p>
                 ))
@@ -234,12 +234,12 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
             {/* Tags */}
             {article.tags && (
-              <div className="mt-10 pt-6 border-t border-slate-100 flex flex-wrap gap-2 items-center">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-2">Tags:</span>
+              <div className="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2 items-center">
+                <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mr-2">Tags:</span>
                 {article.tags.map((tag: string, i: number) => (
                   <span
                     key={i}
-                    className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full border border-slate-200/80"
+                    className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-full border border-slate-200/80 dark:border-slate-700"
                   >
                     {tag}
                   </span>
@@ -252,13 +252,13 @@ export default async function BlogPostPage({ params }: PostPageProps) {
           <div className="mt-10 flex justify-between items-center">
             <Link
               href="/blog"
-              className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-all"
+              className="px-6 py-3 bg-slate-900 dark:bg-slate-800 hover:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold rounded-xl transition-all"
             >
               ← Back to Blog
             </Link>
             <Link
               href="/#main-content"
-              className="text-green-600 hover:text-green-700 font-bold"
+              className="text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 font-bold"
             >
               Back to Home →
             </Link>

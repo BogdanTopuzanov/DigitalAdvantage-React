@@ -181,7 +181,7 @@ export default async function BlogPage() {
   const allPosts = [...sanityPosts, ...authenticPosts.filter((ap) => !sanityPosts.some((sp) => sp.slug === ap.slug))];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors">
       {/* Skip link */}
       <a
         href="#blog-main"
@@ -194,23 +194,23 @@ export default async function BlogPage() {
       <Header activePage="BLOG" phoneNumber={headerSettings?.phoneNumber} />
 
       {/* Page Title Banner */}
-      <div className="bg-white border-b border-slate-200/80 py-10">
+      <div className="bg-white dark:bg-slate-900 border-b border-slate-200/80 dark:border-slate-800 py-10 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h1 className="text-3xl sm:text-4xl font-black font-geomanist text-slate-900 tracking-normal">
+              <h1 className="text-3xl sm:text-4xl font-black font-geomanist text-slate-900 dark:text-white tracking-normal">
                 Blog
               </h1>
-              <p className="mt-2 text-slate-500 font-medium text-sm">
+              <p className="mt-2 text-slate-500 dark:text-slate-400 font-medium text-sm">
                 Stories, updates, and podcasts from Digital Advantage and DISC
               </p>
             </div>
             
             {/* Breadcrumb indicator */}
             <div className="text-xs font-semibold text-slate-400">
-              <Link href="/" className="hover:text-green-600 transition-colors">Home</Link>
+              <Link href="/" className="hover:text-green-600 dark:hover:text-green-400 transition-colors">Home</Link>
               <span className="mx-2">/</span>
-              <span className="text-slate-800">Blog</span>
+              <span className="text-slate-800 dark:text-slate-200">Blog</span>
             </div>
           </div>
         </div>
@@ -223,13 +223,13 @@ export default async function BlogPage() {
             {allPosts.map((post, index) => (
               <article
                 key={post.slug || index}
-                className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden p-6 sm:p-8"
+                className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all overflow-hidden p-6 sm:p-8"
               >
                 {/* Header: Title, Date, Author */}
                 <header className="mb-6">
-                  <h2 className="text-2xl sm:text-3xl font-black font-geomanist text-slate-900 hover:text-green-600 transition-colors leading-snug tracking-normal">
+                  <h2 className="text-2xl sm:text-3xl font-black font-geomanist text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 transition-colors leading-snug tracking-normal">
                     {post.externalUrl ? (
-                      <ExternalLink href={post.externalUrl} className="hover:text-green-600 transition-colors">
+                      <ExternalLink href={post.externalUrl} className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
                         {post.title}
                       </ExternalLink>
                     ) : (
@@ -239,13 +239,13 @@ export default async function BlogPage() {
                     )}
                   </h2>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-400">
-                    <span className="text-slate-500">{post.date}</span>
+                    <span className="text-slate-500 dark:text-slate-400">{post.date}</span>
                     <span>•</span>
-                    <span>by <span className="text-green-700 font-bold">{post.author}</span></span>
+                    <span>by <span className="text-green-700 dark:text-green-400 font-bold">{post.author}</span></span>
                     {post.isFromSanity && (
                       <>
                         <span>•</span>
-                        <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded font-bold uppercase text-[10px]">
+                        <span className="px-2 py-0.5 bg-green-100 dark:bg-green-950/70 text-green-800 dark:text-green-300 rounded font-bold uppercase text-[10px]">
                           Sanity CMS Live
                         </span>
                       </>
@@ -259,7 +259,7 @@ export default async function BlogPage() {
                   <div className="md:col-span-5 lg:col-span-5">
                     <Link 
                       href={`/blog/${post.slug}`} 
-                      className="block group overflow-hidden rounded-xl border border-slate-100 shadow-inner bg-slate-50 relative aspect-[16/9]"
+                      className="block group overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800 shadow-inner bg-slate-50 dark:bg-slate-800 relative aspect-[16/9]"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -272,17 +272,17 @@ export default async function BlogPage() {
 
                   {/* Right Column: Intro Text */}
                   <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-between h-full">
-                    <p className="text-slate-600 text-base leading-relaxed font-normal">
+                    <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed font-normal">
                       {post.text}
                     </p>
 
                     {/* Tags block */}
-                    <div className="mt-6 pt-4 border-t border-slate-100">
+                    <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                       <div className="flex flex-wrap items-center gap-2">
                         {post.tags.map((tag, tIdx) => (
                           <span
                             key={tIdx}
-                            className="inline-block px-3 py-1 bg-slate-100 hover:bg-green-50 text-slate-600 hover:text-green-700 text-xs font-semibold rounded-full border border-slate-200/80 transition-colors"
+                            className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-green-50 dark:hover:bg-green-950 text-slate-600 dark:text-slate-300 hover:text-green-700 dark:hover:text-green-400 text-xs font-semibold rounded-full border border-slate-200/80 dark:border-slate-700 transition-colors"
                           >
                             {tag}
                           </span>
@@ -310,7 +310,7 @@ export default async function BlogPage() {
                         )}
 
                         <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                          <svg className="w-4 h-4 text-slate-300" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-4 h-4 text-slate-300 dark:text-slate-600" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm-4 0h-2v2h2V9z" clipRule="evenodd" />
                           </svg>
                           <span>No Comments</span>
@@ -322,8 +322,8 @@ export default async function BlogPage() {
 
                 {/* Footer metadata line */}
                 {post.categories && post.categories.length > 0 && (
-                  <div className="mt-6 pt-4 border-t border-slate-100 text-xs text-slate-400 font-medium flex items-center gap-2">
-                    <span className="text-slate-500 font-semibold">Published in:</span>
+                  <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-400 font-medium flex items-center gap-2">
+                    <span className="text-slate-500 dark:text-slate-400 font-semibold">Published in:</span>
                     <span>{post.categories.join(', ')}</span>
                   </div>
                 )}

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ExternalLink from "./ExternalLink";
+import ThemeToggle from "./ThemeToggle";
 
 interface HeaderProps {
   activePage?: string;
@@ -8,15 +9,15 @@ interface HeaderProps {
 
 export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 2040' }: HeaderProps) {
   const navLinks = [
-  { label: "HOME", href: "/" },
-  { label: "DISC", href: "https://disc.ac.uk/" },
-  { label: "BLOG", href: "/blog" },
-];
+    { label: "HOME", href: "/" },
+    { label: "DISC", href: "https://disc.ac.uk/" },
+    { label: "BLOG", href: "/blog" },
+  ];
 
   const cleanPhone = phoneNumber.replace(/[^0-9+]/g, '');
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/60 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand Logo & Name */}
@@ -34,65 +35,75 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               className="w-48 h-16 object-contain group-hover:scale-105 transition-transform"
             />
           </div>
-         {/* <span className="text-2xl font-black text-slate-900 tracking-tight group-hover:text-green-600 transition-colors">
-            DIGITAL <span className="font-light text-slate-500">ADVANTAGE</span>
-          </span>*/}
         </Link>
         
-        {/* Navigation */}
-        <nav aria-label="Main Navigation" className="hidden md:block">
-          <ul className="flex space-x-1 items-center">
-            {navLinks.map((link) => {
-              const isActive = activePage.toUpperCase() === link.label;
-              return (
-  <li key={link.label}>
-    {link.label === "DISC" ? (
-      <ExternalLink
-         href="https://disc.ac.uk/"
-        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
-          isActive
-            ? "text-green-700 bg-green-100/70 shadow-sm"
-            : "text-slate-600 hover:text-green-600 hover:bg-green-50"
-        }`}
-      >
-        DISC
-      </ExternalLink>
-    ) : (
-      <Link
-        href={link.href}
-        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
-          isActive
-            ? "text-green-700 bg-green-100/70 shadow-sm"
-            : "text-slate-600 hover:text-green-600 hover:bg-green-50"
-        }`}
-      >
-        {link.label}
-      </Link>
-    )}
-  </li>
-);
-            })}
-            
-            {/* Phone CTA */}
-            <li className="pl-4 border-l border-slate-200">
-              <a 
-                href={`tel:${cleanPhone || '01614102040'}`}
-                className="text-sm font-black text-slate-900 hover:text-green-600 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
-                aria-label={`Call us at ${phoneNumber}`}
-              >
-                <svg 
-                  className="w-4 h-4 text-green-600 shrink-0" 
-                  viewBox="0 0 24 24" 
-                  fill="currentColor" 
-                  aria-hidden="true"
+        {/* Navigation + Actions */}
+        <div className="flex items-center gap-2">
+          <nav aria-label="Main Navigation" className="hidden md:block">
+            <ul className="flex space-x-1 items-center">
+              {navLinks.map((link) => {
+                const isActive = activePage.toUpperCase() === link.label;
+                return (
+                  <li key={link.label}>
+                    {link.label === "DISC" ? (
+                      <ExternalLink
+                        href="https://disc.ac.uk/"
+                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+                          isActive
+                            ? "text-green-700 bg-green-100/70 dark:text-green-300 dark:bg-green-950/70 shadow-sm"
+                            : "text-slate-600 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800"
+                        }`}
+                      >
+                        DISC
+                      </ExternalLink>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+                          isActive
+                            ? "text-green-700 bg-green-100/70 dark:text-green-300 dark:bg-green-950/70 shadow-sm"
+                            : "text-slate-600 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800"
+                        }`}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+              
+              {/* Phone CTA */}
+              <li className="pl-4 border-l border-slate-200 dark:border-slate-700">
+                <a 
+                  href={`tel:${cleanPhone || '01614102040'}`}
+                  className="text-sm font-black text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
+                  aria-label={`Call us at ${phoneNumber}`}
                 >
-                  <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                </svg>
-                <span>{phoneNumber}</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+                  <svg 
+                    className="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" 
+                    viewBox="0 0 24 24" 
+                    fill="currentColor" 
+                    aria-hidden="true"
+                  >
+                    <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                  <span>{phoneNumber}</span>
+                </a>
+              </li>
+
+              {/* Theme Toggle — right of phone number */}
+              <li className="pl-1">
+                <ThemeToggle />
+              </li>
+            </ul>
+          </nav>
+
+          {/* Theme Toggle for mobile */}
+          <div className="md:hidden">
+            <ThemeToggle />
+          </div>
+        </div>
+
       </div>
     </header>
   );
