@@ -292,7 +292,9 @@ export default async function Home() {
               </p>
               <div className="flex flex-col gap-3 pt-2">
                 <a
-                  href="#"
+                  href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DA-Safeguarding-and-Protection-Policy-and-Procedures-2025-1.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-green-700 dark:hover:text-green-400 transition-colors group"
                 >
                   <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
@@ -304,7 +306,9 @@ export default async function Home() {
                   Download DA Safeguarding Policy
                 </a>
                 <a
-                  href="#"
+                  href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-green-700 dark:hover:text-green-400 transition-colors group"
                 >
                   <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">

@@ -34,14 +34,14 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-slate-600 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500"
+      className="inline-flex items-center justify-center w-9 h-9 rounded-full text-slate-600 dark:text-slate-700 hover:text-green-600 dark:hover:text-green-700 hover:bg-slate-100 dark:hover:bg-green-100/60 transition-colors focus:outline-none focus:ring-4 focus:ring-green-500"
       aria-label={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
       title={theme === "light" ? "Switch to dark theme" : "Switch to light theme"}
     >
       {!mounted || theme === "light" ? (
         /* Moon Icon (shows in light mode to switch to dark) */
         <svg
-          className="w-5 h-5 text-slate-700 dark:text-slate-300"
+          className="w-5 h-5 text-slate-700 dark:text-slate-800"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={2}

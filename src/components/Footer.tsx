@@ -72,7 +72,7 @@ export default function Footer({ settings }: FooterProps) {
           <li key={idx}>
             <a 
               href={item.url}
-              className="text-slate-300 font-medium hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
+              className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
             >
               {item.text}
             </a>
@@ -83,7 +83,7 @@ export default function Footer({ settings }: FooterProps) {
         <li key={idx}>
           <Link 
             href={item.url}
-            className="text-slate-300 font-medium hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
+            className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
           >
             {item.text}
           </Link>
@@ -92,14 +92,14 @@ export default function Footer({ settings }: FooterProps) {
     }
 
     return (
-      <li key={idx} className="text-slate-300 font-medium leading-relaxed">
+      <li key={idx} className="text-slate-300 dark:text-slate-700 font-medium leading-relaxed">
         {item.text}
       </li>
     );
   };
 
   return (
-    <footer className="bg-slate-900 dark:bg-black text-white py-16 border-t border-slate-800 dark:border-slate-900 transition-colors" aria-labelledby="footer-heading">
+    <footer className="bg-[#3A3A3A] dark:bg-[#F7F9F7] text-white dark:text-slate-900 py-16 border-t border-slate-800 dark:border-slate-200 transition-colors" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">Site Footer</h2>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,20 +112,20 @@ export default function Footer({ settings }: FooterProps) {
               <img 
                 src="/images/logo-footer.png" 
                 alt="Digital Advantage Logo" 
-                className="h-7 sm:h-10 w-auto max-w-full object-contain group-hover:brightness-110 transition-all"
+                className="h-7 sm:h-10 w-auto max-w-full object-contain group-hover:brightness-110 transition-all dark:brightness-0 dark:group-hover:brightness-0 dark:opacity-80 dark:group-hover:opacity-100"
               />
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-xs sm:max-w-sm">
+            <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed max-w-xs sm:max-w-sm">
               {settings?.footerAbout || 'Digital Advantage is a registered charity in England and Wales. We help young neurodivergent people and individuals with SEND gain creative, digital and employability skills.'}
             </p>
-            <span className="inline-block px-3 py-1 bg-slate-800 border border-slate-700/60 rounded-full text-xs font-semibold text-green-400">
+            <span className="inline-block px-3 py-1 bg-slate-800 dark:bg-slate-200 border border-slate-700/60 dark:border-slate-300/60 rounded-full text-xs font-semibold text-green-400 dark:text-green-700">
               Registered Charity No. 1188836
             </span>
           </div>
 
           {/* Column 2: Quick Links (2 columns) */}
           <nav aria-label="Footer Navigation" className="lg:col-span-2">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Quick Links
             </h3>
@@ -136,7 +136,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 3: Safeguarding (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Safeguarding
             </h3>
@@ -147,7 +147,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 4: Contact Us (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Contact Us
             </h3>
@@ -159,12 +159,12 @@ export default function Footer({ settings }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-slate-500 gap-4">
+        <div className="mt-16 pt-8 border-t border-slate-800/80 dark:border-slate-300/60 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-slate-600 gap-4">
           <p>© {new Date().getFullYear()} Digital Advantage. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
-            <Link href="/accessibility" className="hover:text-slate-400 transition-colors">Accessibility</Link>
-            <Link href="/contact-us" className="hover:text-slate-400 transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Privacy Policy</Link>
+            <Link href="/accessibility" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Accessibility</Link>
+            <Link href="/contact-us" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Contact</Link>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
   const cleanPhone = phoneNumber.replace(/[^0-9+]/g, '');
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800 shadow-sm transition-colors">
+    <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#F7F9F7]/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-300/50 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand Logo & Name */}
@@ -26,7 +26,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
           className="flex items-center gap-3 group focus:outline-none focus:ring-4 focus:ring-green-500 rounded-lg p-1 transition-all"
           aria-label="Digital Advantage Home"
         >
-          {/* Real Green Logo */}
+          {/* Logo: dark-on-light SVG in both light and dark mode (header bg is light in both) */}
           <div className="w-48 h-16 flex-shrink-0 relative flex items-center justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
@@ -50,8 +50,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                         href="https://disc.ac.uk/"
                         className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-green-300 dark:bg-green-950/70 shadow-sm"
-                            : "text-slate-600 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800"
+                            ? "text-green-700 bg-green-100/70 dark:text-green-800 dark:bg-green-200/70 shadow-sm"
+                            : "text-slate-600 dark:text-slate-700 hover:text-green-600 dark:hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-100/60"
                         }`}
                       >
                         DISC
@@ -61,8 +61,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                         href={link.href}
                         className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-green-300 dark:bg-green-950/70 shadow-sm"
-                            : "text-slate-600 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800"
+                            ? "text-green-700 bg-green-100/70 dark:text-green-800 dark:bg-green-200/70 shadow-sm"
+                            : "text-slate-600 dark:text-slate-700 hover:text-green-600 dark:hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-100/60"
                         }`}
                       >
                         {link.label}
@@ -73,14 +73,14 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               })}
               
               {/* Phone CTA */}
-              <li className="pl-4 border-l border-slate-200 dark:border-slate-700">
+              <li className="pl-4 border-l border-slate-200 dark:border-slate-300">
                 <a 
                   href={`tel:${cleanPhone || '01614102040'}`}
-                  className="text-sm font-black text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
+                  className="text-sm font-black text-slate-900 dark:text-slate-900 hover:text-green-600 dark:hover:text-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
                   aria-label={`Call us at ${phoneNumber}`}
                 >
                   <svg 
-                    className="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" 
+                    className="w-4 h-4 text-green-600 dark:text-green-700 shrink-0" 
                     viewBox="0 0 24 24" 
                     fill="currentColor" 
                     aria-hidden="true"
