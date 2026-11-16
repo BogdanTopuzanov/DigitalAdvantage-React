@@ -201,13 +201,13 @@ export default async function Home() {
               <div className="flex flex-wrap gap-3 mb-6">
                     <Link
                   href="/blog/your-dna"
-                  className="inline-flex items-center gap-2 font-bold text-sm bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-all"
+                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 dark:border-slate-700 px-5 py-2.5 rounded-full text-slate-800 dark:text-slate-200 hover:bg-green-600 hover:text-white hover:border-green-600 focus-visible:bg-green-600 focus-visible:text-white focus-visible:border-green-600 dark:hover:bg-green-500 dark:focus-visible:bg-green-500 focus:outline-none transition-all"
                 >
                   More about Your DNA
                 </Link>
                 <ExternalLink
                   href="https://sites.google.com/digitaladvantage.org.uk/yourdnashowcase/home"
-                  className="inline-flex items-center gap-2 font-bold text-sm bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-all"
+                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 dark:border-slate-700 px-5 py-2.5 rounded-full text-slate-800 dark:text-slate-200 hover:bg-green-600 hover:text-white hover:border-green-600 focus-visible:bg-green-600 focus-visible:text-white focus-visible:border-green-600 dark:hover:bg-green-500 dark:focus-visible:bg-green-500 focus:outline-none transition-all"
                 >
                   See the Your DNA showcase
                 </ExternalLink>
@@ -309,7 +309,7 @@ export default async function Home() {
                   href="https://disc.ac.uk/wp-content/uploads/2026/10/DISC-Safeguarding-Policy-September-2026-v3.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-sm font-bold bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-colors"
+                  className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200 rounded-full px-5 py-2.5 border border-slate-300 dark:border-slate-700 hover:bg-green-600 hover:text-white hover:border-green-600 focus-visible:bg-green-600 focus-visible:text-white focus-visible:border-green-600 dark:hover:bg-green-500 dark:focus-visible:bg-green-500 focus:outline-none transition-all group"
                 >
                   <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9">
