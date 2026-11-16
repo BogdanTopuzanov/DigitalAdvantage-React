@@ -294,18 +294,15 @@ export default async function Home() {
                 </a>)
               </p>
               <div className="flex flex-col gap-3 pt-2">
+                {/* HIDDEN: DA Safeguarding Policy (kept for later, not deleted) */}
                 <a
                   href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DA-Safeguarding-and-Protection-Policy-and-Procedures-2025-1.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-green-700 dark:hover:text-green-400 transition-colors group"
+                  className="hidden"
+                  aria-hidden="true"
+                  tabIndex={-1}
                 >
-                  <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
-                    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9">
-                      <rect width="36" height="36" rx="6" fill="#E53E3E"/>
-                      <text x="18" y="24" textAnchor="middle" fontSize="11" fontWeight="bold" fill="white" fontFamily="Arial, sans-serif">PDF</text>
-                    </svg>
-                  </span>
                   Download DA Safeguarding Policy
                 </a>
                 <a
@@ -355,8 +352,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* FILM STRIP — aligned with container width */}
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden py-4" aria-hidden="true">
+        {/* FILM STRIP — hidden (kept for later, not deleted) */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden py-4 hidden" aria-hidden="true">
           <Image
             src="/images/film-strip-2x.svg"
             alt=""

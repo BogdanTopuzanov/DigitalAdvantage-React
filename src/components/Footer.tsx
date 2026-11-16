@@ -21,7 +21,6 @@ export default function Footer({ settings }: FooterProps) {
   // 1. Fallback for Quick Links
   const defaultQuickLinks: FooterItem[] = [
     { text: 'Home', url: '/', isLink: true },
-    { text: 'PopUp', url: '/popup', isLink: true },
     { text: 'DISC', url: '/disc', isLink: true },
     { text: 'Videos', url: '/videos', isLink: true },
     { text: 'Blog', url: '/blog', isLink: true },
@@ -36,7 +35,7 @@ export default function Footer({ settings }: FooterProps) {
       url: `mailto:${settings?.email || 'caroline.d@disc.ac.uk'}`, 
       isLink: true 
     },
-    { text: 'Download Safeguarding Policy (PDF)', url: '#', isLink: true },
+    { text: 'Download Safeguarding Policy (PDF)', url: 'https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf', isLink: true },
   ];
 
   // 3. Fallback for Contact
@@ -72,7 +71,9 @@ export default function Footer({ settings }: FooterProps) {
           <li key={idx}>
             <a 
               href={item.url}
-              className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
+              target={isExternal && item.url.startsWith('http') ? '_blank' : undefined}
+              rel={isExternal && item.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
             >
               {item.text}
             </a>
@@ -83,7 +84,7 @@ export default function Footer({ settings }: FooterProps) {
         <li key={idx}>
           <Link 
             href={item.url}
-            className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 rounded px-1 transition-colors inline-block"
+            className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
           >
             {item.text}
           </Link>
@@ -170,9 +171,9 @@ export default function Footer({ settings }: FooterProps) {
         <div className="mt-16 pt-8 border-t border-slate-800/80 dark:border-slate-300/60 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-slate-600 gap-4">
           <p>© {new Date().getFullYear()} Digital Advantage. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Privacy Policy</Link>
-            <Link href="/accessibility" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Accessibility</Link>
-            <Link href="/contact-us" className="hover:text-slate-400 dark:hover:text-slate-800 transition-colors">Contact</Link>
+            <a href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
+            <Link href="/accessibility" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Accessibility</Link>
+            <Link href="/contact-us" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Contact</Link>
           </div>
         </div>
       </div>
