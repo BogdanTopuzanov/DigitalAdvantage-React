@@ -69,23 +69,27 @@ export default async function Home() {
           </div>
 
           {/* Lower block with SVG background — quote at top edge, patterns below unobstructed */}
-          <div className="relative w-full min-h-[380px] sm:min-h-[460px] lg:min-h-[520px] pb-48 sm:pb-56 lg:pb-64 overflow-hidden">
-            <div className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+          <div className="relative w-full pb-24 sm:pb-32 lg:pb-40 overflow-hidden bg-[#3a3a3a] dark:bg-[#f7f9f7]">
+            <div className="absolute bottom-0 left-0 w-full max-w-none pointer-events-none" aria-hidden="true">
               {/* Light mode: dark isometric band */}
               <Image
                 src="/images/da-isometric-band.svg"
                 alt=""
-                fill
-                className="object-cover object-bottom block dark:hidden"
+                width={1920}
+                height={1080}
+                className="w-full h-auto block dark:hidden"
                 priority
+                sizes="100vw"
               />
               {/* Dark mode: light isometric band */}
               <Image
                 src="/images/da-isometric-band-light.svg"
                 alt=""
-                fill
-                className="object-cover object-bottom hidden dark:block"
+                width={1920}
+                height={1080}
+                className="w-full h-auto hidden dark:block"
                 priority
+                sizes="100vw"
               />
             </div>
 
