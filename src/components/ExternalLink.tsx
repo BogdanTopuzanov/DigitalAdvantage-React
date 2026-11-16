@@ -17,9 +17,12 @@ export default function ExternalLink({
   ariaLabel,
 }: ExternalLinkProps) {
   const [open, setOpen] = useState(false);
-  const [activeBtn, setActiveBtn] = useState<"continue" | "cancel" | null>(null);
+  const [hoverBtn, setHoverBtn] = useState<"continue" | "cancel" | null>(null);
+  const [focusedBtn, setFocusedBtn] = useState<"continue" | "cancel" | null>(null);
   const continueRef = useRef<HTMLAnchorElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
+
+  // The highlighted button is whatever is hovered, otherwise whatever is focused (Tab wins as the persistent rule).
 
   // Auto-focus the "Continue" button when the modal opens
   useEffect(() => {
@@ -121,12 +124,12 @@ export default function ExternalLink({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                onMouseEnter={() => setActiveBtn("continue")}
-                onMouseLeave={() => setActiveBtn(null)}
-                onFocus={() => setActiveBtn("continue")}
-                onBlur={() => setActiveBtn(null)}
+                onMouseEnter={() => setHoverBtn("continue")}
+                onMouseLeave={() => setHoverBtn(null)}
+                onFocus={() => setFocusedBtn("continue")}
+                onBlur={() => setFocusedBtn(null)}
                 className={`flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-white text-sm font-medium rounded-full transition-colors ${
-                  activeBtn === "cancel"
+                  (hoverBtn ?? focusedBtn) === "cancel"
                     ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
                     : "bg-green-600 hover:bg-green-700"
                 }`}
@@ -141,12 +144,12 @@ export default function ExternalLink({
               <button
                 ref={cancelRef}
                 onClick={() => setOpen(false)}
-                onMouseEnter={() => setActiveBtn("cancel")}
-                onMouseLeave={() => setActiveBtn(null)}
-                onFocus={() => setActiveBtn("cancel")}
-                onBlur={() => setActiveBtn(null)}
+                onMouseEnter={() => setHoverBtn("cancel")}
+                onMouseLeave={() => setHoverBtn(null)}
+                onFocus={() => setFocusedBtn("cancel")}
+                onBlur={() => setFocusedBtn(null)}
                 className={`flex-1 px-5 py-2.5 text-sm font-medium rounded-full transition-colors ${
-                  activeBtn === "cancel"
+                  (hoverBtn ?? focusedBtn) === "cancel"
                     ? "bg-green-600 text-white hover:bg-green-700"
                     : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                 }`}
