@@ -108,11 +108,19 @@ export default function Footer({ settings }: FooterProps) {
           {/* Column 1: Brand Logo & Mission (4 columns) */}
           <div className="lg:col-span-4 flex flex-col items-start space-y-4">
             <Link href="/" className="inline-block group focus:outline-none focus:ring-4 focus:ring-green-500 rounded p-1">
+              {/* Light logo: white text + green symbol on dark bg */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/images/logo-footer.png" 
                 alt="Digital Advantage Logo" 
-                className="h-7 sm:h-10 w-auto max-w-full object-contain group-hover:brightness-110 transition-all dark:brightness-0 dark:group-hover:brightness-0 dark:opacity-80 dark:group-hover:opacity-100"
+                className="h-7 sm:h-10 w-auto max-w-full object-contain group-hover:brightness-110 transition-all dark:hidden"
+              />
+              {/* Dark logo: dark text + green symbol on light bg */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/images/Logo-Footer-Green+Grey-Fine.svg" 
+                alt="Digital Advantage Logo" 
+                className="h-7 sm:h-10 w-auto max-w-full object-contain transition-all hidden dark:block"
               />
             </Link>
             <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed max-w-xs sm:max-w-sm">
