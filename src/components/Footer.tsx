@@ -24,7 +24,6 @@ export default function Footer({ settings }: FooterProps) {
     { text: 'DISC', url: '/disc', isLink: true },
     { text: 'Videos', url: '/videos', isLink: true },
     { text: 'Blog', url: '/blog', isLink: true },
-    { text: 'Contact', url: '/contact-us', isLink: true },
   ];
 
   // 2. Fallback for Safeguarding
@@ -50,9 +49,14 @@ export default function Footer({ settings }: FooterProps) {
     },
   ];
 
-  const quickLinks = (settings?.footerQuickLinks && settings.footerQuickLinks.length > 0) 
+  const quickLinksRaw = (settings?.footerQuickLinks && settings.footerQuickLinks.length > 0) 
     ? settings.footerQuickLinks 
     : defaultQuickLinks;
+
+  // Always drop PopUp and Contact from Quick Links (regardless of CMS data)
+  const quickLinks = quickLinksRaw.filter(
+    (item) => !['PopUp', 'Contact'].includes(item.text.trim())
+  );
 
   const safeguarding = (settings?.footerSafeguarding && settings.footerSafeguarding.length > 0) 
     ? settings.footerSafeguarding 
