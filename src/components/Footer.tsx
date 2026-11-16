@@ -34,7 +34,7 @@ export default function Footer({ settings }: FooterProps) {
       url: `mailto:${settings?.email || 'caroline.d@disc.ac.uk'}`, 
       isLink: true 
     },
-    { text: 'Download Safeguarding Policy (PDF)', url: 'https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf', isLink: true },
+    { text: 'Download Safeguarding Policy (PDF)', url: 'https://disc.ac.uk/wp-content/uploads/2026/10/DISC-Safeguarding-Policy-September-2026-v3.pdf', isLink: true },
   ];
 
   // 3. Fallback for Contact
@@ -175,7 +175,7 @@ export default function Footer({ settings }: FooterProps) {
         <div className="mt-16 pt-8 border-t border-slate-800/80 dark:border-slate-300/60 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-white dark:text-slate-900 gap-4">
           <p>© {new Date().getFullYear()} Digital Advantage. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
+            <a href="https://disc.ac.uk/wp-content/uploads/2026/10/DISC-Safeguarding-Policy-September-2026-v3.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
             <Link href="/accessibility" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Accessibility</Link>
             <Link href="/contact-us" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Contact</Link>
           </div>

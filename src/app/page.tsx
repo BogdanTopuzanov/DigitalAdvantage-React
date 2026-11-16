@@ -199,15 +199,15 @@ export default async function Home() {
                 An intensive and transformative digital work experience programme.
               </p>
               <div className="flex flex-wrap gap-3 mb-6">
-                <Link
+                    <Link
                   href="/blog/your-dna"
-                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 dark:border-slate-700 px-5 py-2.5 rounded-full text-slate-800 dark:text-slate-200 hover:border-green-500 dark:hover:border-green-400 hover:text-green-700 dark:hover:text-green-400 transition-all"
+                  className="inline-flex items-center gap-2 font-bold text-sm bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-all"
                 >
                   More about Your DNA
                 </Link>
                 <ExternalLink
                   href="https://sites.google.com/digitaladvantage.org.uk/yourdnashowcase/home"
-                  className="inline-flex items-center gap-2 font-bold text-sm border border-slate-300 dark:border-slate-700 px-5 py-2.5 rounded-full text-slate-800 dark:text-slate-200 hover:border-green-500 dark:hover:border-green-400 hover:text-green-700 dark:hover:text-green-400 transition-all"
+                  className="inline-flex items-center gap-2 font-bold text-sm bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-all"
                 >
                   See the Your DNA showcase
                 </ExternalLink>
@@ -306,10 +306,10 @@ export default async function Home() {
                   Download DA Safeguarding Policy
                 </a>
                 <a
-                  href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf"
+                  href="https://disc.ac.uk/wp-content/uploads/2026/10/DISC-Safeguarding-Policy-September-2026-v3.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-green-700 dark:hover:text-green-400 transition-colors group"
+                  className="inline-flex items-center gap-3 text-sm font-bold bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-full shadow-md shadow-green-600/30 transition-colors"
                 >
                   <span className="w-9 h-9 shrink-0 flex items-center justify-center" aria-hidden="true">
                     <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-9 h-9">

@@ -17,6 +17,7 @@ export default function ExternalLink({
   ariaLabel,
 }: ExternalLinkProps) {
   const [open, setOpen] = useState(false);
+  const [activeBtn, setActiveBtn] = useState<"continue" | "cancel" | null>(null);
   const continueRef = useRef<HTMLAnchorElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
 
@@ -113,14 +114,22 @@ export default function ExternalLink({
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
-              {/* Continue - real anchor that opens the URL */}
+              {/* Continue - green by default, grey when Cancel is hovered/focused */}
               <a
                 ref={continueRef}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-full transition-colors focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white focus-visible:ring-offset-green-600"
+                onMouseEnter={() => setActiveBtn("continue")}
+                onMouseLeave={() => setActiveBtn(null)}
+                onFocus={() => setActiveBtn("continue")}
+                onBlur={() => setActiveBtn(null)}
+                className={`flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-white text-sm font-medium rounded-full transition-colors ${
+                  activeBtn === "cancel"
+                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    : "bg-green-600 hover:bg-green-700"
+                }`}
               >
                 Continue
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
@@ -128,11 +137,19 @@ export default function ExternalLink({
                 </svg>
               </a>
 
-              {/* Cancel */}
+              {/* Cancel - grey by default, green when hovered/focused */}
               <button
                 ref={cancelRef}
                 onClick={() => setOpen(false)}
-                className="flex-1 px-5 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-slate-700"
+                onMouseEnter={() => setActiveBtn("cancel")}
+                onMouseLeave={() => setActiveBtn(null)}
+                onFocus={() => setActiveBtn("cancel")}
+                onBlur={() => setActiveBtn(null)}
+                className={`flex-1 px-5 py-2.5 text-sm font-medium rounded-full transition-colors ${
+                  activeBtn === "cancel"
+                    ? "bg-green-600 text-white hover:bg-green-700"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                }`}
               >
                 Stay on this page
               </button>

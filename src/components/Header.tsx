@@ -55,10 +55,10 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                     {link.label === "DISC" ? (
                       <ExternalLink
                         href="https://disc.ac.uk/"
-                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] ${
+                        className={`text-sm font-bold px-5 py-2.5 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-white dark:bg-green-600/30 shadow-sm"
-                            : "text-slate-600 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-white/10"
+                            ? "bg-green-600 text-white shadow-md shadow-green-600/30 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
+                            : "bg-green-100 text-green-800 hover:bg-green-600 hover:text-white dark:bg-white/10 dark:text-white dark:hover:bg-green-500"
                         }`}
                       >
                         DISC
@@ -66,10 +66,10 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                     ) : (
                       <Link
                         href={link.href}
-                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] ${
+                        className={`text-sm font-bold px-5 py-2.5 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-white dark:bg-green-600/30 shadow-sm"
-                            : "text-slate-600 dark:text-slate-200 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-white/10"
+                            ? "bg-green-600 text-white shadow-md shadow-green-600/30 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
+                            : "bg-green-100 text-green-800 hover:bg-green-600 hover:text-white dark:bg-white/10 dark:text-white dark:hover:bg-green-500"
                         }`}
                       >
                         {link.label}
@@ -83,11 +83,11 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               <li className="pl-4 border-l border-slate-200 dark:border-slate-700">
                 <a 
                   href={`tel:${cleanPhone || '01614102040'}`}
-                  className="text-sm font-black text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] rounded-full px-3 py-2 transition-all flex items-center gap-2"
+                  className="text-sm font-black text-white bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 shadow-md shadow-green-600/30 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#020617] rounded-full px-5 py-2.5 transition-all flex items-center gap-2"
                   aria-label={`Call us at ${phoneNumber}`}
                 >
                   <svg 
-                    className="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" 
+                    className="w-4 h-4 text-white shrink-0" 
                     viewBox="0 0 24 24" 
                     fill="currentColor" 
                     aria-hidden="true"
