@@ -73,7 +73,7 @@ export default function Footer({ settings }: FooterProps) {
               href={item.url}
               target={isExternal && item.url.startsWith('http') ? '_blank' : undefined}
               rel={isExternal && item.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
+              className="text-white dark:text-slate-900 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
             >
               {item.text}
             </a>
@@ -84,7 +84,7 @@ export default function Footer({ settings }: FooterProps) {
         <li key={idx}>
           <Link 
             href={item.url}
-            className="text-slate-300 dark:text-slate-700 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
+            className="text-white dark:text-slate-900 font-medium hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded px-1 transition-colors inline-block"
           >
             {item.text}
           </Link>
@@ -93,7 +93,7 @@ export default function Footer({ settings }: FooterProps) {
     }
 
     return (
-      <li key={idx} className="text-slate-300 dark:text-slate-700 font-medium leading-relaxed">
+      <li key={idx} className="text-white dark:text-slate-900 font-medium leading-relaxed">
         {item.text}
       </li>
     );
@@ -124,17 +124,17 @@ export default function Footer({ settings }: FooterProps) {
                 className="h-7 sm:h-10 w-auto max-w-full object-contain transition-all hidden dark:block"
               />
             </Link>
-            <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed max-w-xs sm:max-w-sm">
+            <p className="text-sm text-white dark:text-slate-900 leading-relaxed max-w-xs sm:max-w-sm">
               {settings?.footerAbout || 'Digital Advantage is a registered charity in England and Wales. We help young neurodivergent people and individuals with SEND gain creative, digital and employability skills.'}
             </p>
-            <span className="inline-block px-3 py-1 bg-slate-800 dark:bg-slate-200 border border-slate-700/60 dark:border-slate-300/60 rounded-full text-xs font-semibold text-green-400 dark:text-green-700">
+            <p className="text-sm text-white dark:text-slate-900 font-medium">
               Registered Charity No. 1188836
-            </span>
+            </p>
           </div>
 
           {/* Column 2: Quick Links (2 columns) */}
           <nav aria-label="Footer Navigation" className="lg:col-span-2">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Quick Links
             </h3>
@@ -145,7 +145,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 3: Safeguarding (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Safeguarding
             </h3>
@@ -156,7 +156,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 4: Contact Us (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-slate-400 dark:text-slate-600 uppercase mb-6 flex items-center gap-2">
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
               Contact Us
             </h3>
@@ -168,12 +168,12 @@ export default function Footer({ settings }: FooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-slate-800/80 dark:border-slate-300/60 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-slate-500 dark:text-slate-600 gap-4">
+        <div className="mt-16 pt-8 border-t border-slate-800/80 dark:border-slate-300/60 flex flex-col sm:flex-row justify-between items-center text-sm font-medium text-white dark:text-slate-900 gap-4">
           <p>© {new Date().getFullYear()} Digital Advantage. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
-            <Link href="/accessibility" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Accessibility</Link>
-            <Link href="/contact-us" className="hover:text-slate-400 dark:hover:text-slate-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Contact</Link>
+            <a href="https://www.digitaladvantage.org.uk/wp-content/uploads/2025/02/DISC-Safeguarding-and-Protection-Policy-and-Procedures.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
+            <Link href="/accessibility" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Accessibility</Link>
+            <Link href="/contact-us" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Contact</Link>
           </div>
         </div>
       </div>
