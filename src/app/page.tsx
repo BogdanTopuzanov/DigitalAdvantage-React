@@ -69,34 +69,29 @@ export default async function Home() {
           </div>
 
           {/* Lower block with SVG background — quote at top edge, patterns below unobstructed */}
-          <div className="relative w-full pb-24 sm:pb-32 lg:pb-40 overflow-hidden bg-[#3a3a3a] dark:bg-[#f7f9f7]">
-            <div className="absolute bottom-0 left-0 w-full max-w-none pointer-events-none" aria-hidden="true">
+          <div className="relative w-full overflow-hidden bg-[#3a3a3a] dark:bg-[#f7f9f7] flex flex-col">
+            <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-8 sm:pb-12 text-left">
+              <p className="text-base sm:text-lg font-bold text-white dark:text-slate-900 leading-relaxed transition-colors">
+                Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
+              </p>
+            </div>
+            <div className="relative w-full h-40 sm:h-56 lg:h-64 shrink-0 pointer-events-none" aria-hidden="true">
               {/* Light mode: dark isometric band */}
               <Image
                 src="/images/da-isometric-band.svg"
                 alt=""
-                width={1920}
-                height={1080}
-                className="w-full h-auto block dark:hidden"
+                fill
+                className="object-cover object-bottom dark:hidden"
                 priority
-                sizes="100vw"
               />
               {/* Dark mode: light isometric band */}
               <Image
                 src="/images/da-isometric-band-light.svg"
                 alt=""
-                width={1920}
-                height={1080}
-                className="w-full h-auto hidden dark:block"
+                fill
+                className="object-cover object-bottom hidden dark:block"
                 priority
-                sizes="100vw"
               />
-            </div>
-
-            <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 text-left">
-              <p className="text-base sm:text-lg font-bold text-white dark:text-slate-900 leading-relaxed transition-colors">
-                Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
-              </p>
             </div>
           </div>
         </section>
