@@ -152,8 +152,8 @@ export default async function Home() {
 
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 All DISC programmes are funded through Education, Health and Care Plans commissioned by local authorities. To refer a young person or make an enquiry, contact:{" "}
-                <a href="mailto:clare.o@disc.ac.uk" className="font-bold text-green-700 dark:text-green-400 hover:underline">
-                  clare.o@disc.ac.uk
+                <a href="mailto:admissions@disc.ac.uk" className="font-bold text-green-700 dark:text-green-400 hover:underline">
+                  admissions@disc.ac.uk
                 </a>
               </p>
             </div>
@@ -264,7 +264,7 @@ export default async function Home() {
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-4">
                 Our trustees&apos; annual report and accounts are filed with and publicly available from the Charity Commission for England and Wales at the{" "}
                 <ExternalLink 
-                  href="https://register-of-charities.charitycommission.gov.uk/" 
+                  href="https://register-of-charities.charitycommission.gov.uk/en/charity-search/-/charity-details/5141122?_uk_gov_ccew_onereg_charitydetails_web_portlet_CharityDetailsPortlet_organisationNumber=5141122" 
                   className="font-bold text-green-700 dark:text-green-400 hover:underline"
                 >
                   Register of Charities

@@ -17,13 +17,13 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
   const cleanPhone = phoneNumber.replace(/[^0-9+]/g, '');
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#F7F9F7]/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-300/50 shadow-sm transition-colors">
+    <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#F7F9F7]/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-400/60 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* Brand Logo & Name */}
-        <Link 
+        <Link
           href="/" 
-          className="flex items-center gap-3 group focus:outline-none focus:ring-4 focus:ring-green-500 rounded-lg p-1 transition-all"
+          className="flex items-center gap-3 group focus:outline-none focus-visible:ring-4 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#F7F9F7] rounded-lg p-1 transition-all"
           aria-label="Digital Advantage Home"
         >
           {/* Logo: dark-on-light SVG in both light and dark mode (header bg is light in both) */}
@@ -48,7 +48,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                     {link.label === "DISC" ? (
                       <ExternalLink
                         href="https://disc.ac.uk/"
-                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#F7F9F7] ${
                           isActive
                             ? "text-green-700 bg-green-100/70 dark:text-green-800 dark:bg-green-200/70 shadow-sm"
                             : "text-slate-600 dark:text-slate-700 hover:text-green-600 dark:hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-100/60"
@@ -59,7 +59,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                     ) : (
                       <Link
                         href={link.href}
-                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus:ring-4 focus:ring-green-500 ${
+                        className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#F7F9F7] ${
                           isActive
                             ? "text-green-700 bg-green-100/70 dark:text-green-800 dark:bg-green-200/70 shadow-sm"
                             : "text-slate-600 dark:text-slate-700 hover:text-green-600 dark:hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-100/60"
@@ -76,7 +76,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               <li className="pl-4 border-l border-slate-200 dark:border-slate-300">
                 <a 
                   href={`tel:${cleanPhone || '01614102040'}`}
-                  className="text-sm font-black text-slate-900 dark:text-slate-900 hover:text-green-600 dark:hover:text-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 rounded-full px-3 py-2 transition-all flex items-center gap-2"
+                  className="text-sm font-black text-slate-900 dark:text-slate-900 hover:text-green-600 dark:hover:text-green-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-green-500 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#F7F9F7] rounded-full px-3 py-2 transition-all flex items-center gap-2"
                   aria-label={`Call us at ${phoneNumber}`}
                 >
                   <svg 
