@@ -14,8 +14,6 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
     { label: "BLOG", href: "/blog" },
   ];
 
-  const cleanPhone = phoneNumber.replace(/[^0-9+]/g, '');
-
   return (
     <header className="sticky top-0 z-50 bg-white/90 dark:bg-[#020617]/90 backdrop-blur-md border-b border-slate-200/60 dark:border-slate-800/60 shadow-sm transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -81,10 +79,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
               
               {/* Phone CTA */}
               <li className="pl-4 border-l border-slate-200 dark:border-slate-700">
-                <a 
-                  href={`tel:${cleanPhone || '01614102040'}`}
-                  className="text-sm font-black text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 focus:outline-none rounded-full px-3 py-2 transition-all flex items-center gap-2"
-                  aria-label={`Call us at ${phoneNumber}`}
+                <span 
+                  className="text-sm font-black text-slate-900 dark:text-white rounded-full px-3 py-2 flex items-center gap-2"
                 >
                   <svg 
                     className="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" 
@@ -95,7 +91,7 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                     <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                   </svg>
                   <span>{phoneNumber}</span>
-                </a>
+                </span>
               </li>
 
               {/* Theme Toggle — right of phone number */}
