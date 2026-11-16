@@ -75,22 +75,26 @@ export default async function Home() {
                 Everything we do starts from the same belief: that neurodivergent and disabled young people have exceptional talent. Our job is to create the conditions in which that talent can flourish.
               </p>
             </div>
-            <div className="relative w-full h-40 sm:h-56 lg:h-64 shrink-0 pointer-events-none" aria-hidden="true">
+            <div className="relative w-full shrink-0 pointer-events-none" aria-hidden="true">
               {/* Light mode: dark isometric band */}
               <Image
                 src="/images/da-isometric-band.svg"
                 alt=""
-                fill
-                className="object-cover object-bottom dark:hidden"
+                width={1920}
+                height={700}
+                className="w-full h-auto dark:hidden"
                 priority
+                sizes="100vw"
               />
               {/* Dark mode: light isometric band */}
               <Image
                 src="/images/da-isometric-band-light.svg"
                 alt=""
-                fill
-                className="object-cover object-bottom hidden dark:block"
+                width={1920}
+                height={700}
+                className="w-full h-auto hidden dark:block"
                 priority
+                sizes="100vw"
               />
             </div>
           </div>
