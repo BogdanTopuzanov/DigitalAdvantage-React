@@ -138,8 +138,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 2: Quick Links (2 columns) */}
           <nav aria-label="Footer Navigation" className="lg:col-span-2">
-            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -149,8 +148,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 3: Safeguarding (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6">
               Safeguarding
             </h3>
             <ul className="space-y-3">
@@ -160,8 +158,7 @@ export default function Footer({ settings }: FooterProps) {
 
           {/* Column 4: Contact Us (3 columns) */}
           <div className="lg:col-span-3">
-            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500"></span>
+            <h3 className="text-sm font-black tracking-widest text-white dark:text-slate-900 uppercase mb-6">
               Contact Us
             </h3>
             <ul className="space-y-3">

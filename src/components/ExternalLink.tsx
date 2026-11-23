@@ -17,20 +17,23 @@ export default function ExternalLink({
   ariaLabel,
 }: ExternalLinkProps) {
   const [open, setOpen] = useState(false);
-  const [hoverBtn, setHoverBtn] = useState<"continue" | "cancel" | null>(null);
-  const [focusedBtn, setFocusedBtn] = useState<"continue" | "cancel" | null>(null);
+  // Single source of truth for the highlighted button: hover wins while the mouse is actually
+  // over a button; any Tab press clears hover so keyboard focus drives the highlight again.
+  const [activeBtn, setActiveBtn] = useState<"continue" | "cancel" | null>(null);
   const continueRef = useRef<HTMLAnchorElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
-
-  // The highlighted button is whatever is hovered, otherwise whatever is focused (Tab wins as the persistent rule).
 
   // Auto-focus the "Continue" button when the modal opens
   useEffect(() => {
     if (open) {
       // Small delay so the element is rendered before focus
-      const t = setTimeout(() => continueRef.current?.focus(), 50);
+      const t = setTimeout(() => {
+        continueRef.current?.focus();
+        setActiveBtn("continue");
+      }, 50);
       return () => clearTimeout(t);
     }
+    setActiveBtn(null);
   }, [open]);
 
   // Close on Escape key
@@ -60,6 +63,14 @@ export default function ExternalLink({
         first.focus();
       }
     }
+  };
+
+  // Keep the highlight in sync with keyboard focus. Reads the focus target after the tab
+  // actually moved (rAF), so the green style always follows the focused button.
+  const handleFocusCapture = (e: React.FocusEvent<HTMLDivElement>) => {
+    const t = e.target as HTMLElement;
+    if (t === continueRef.current) setActiveBtn("continue");
+    else if (t === cancelRef.current) setActiveBtn("cancel");
   };
 
   return (
@@ -116,7 +127,7 @@ export default function ExternalLink({
               <span className="text-slate-700 dark:text-slate-200 font-normal break-all">{href}</span>
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3" onFocus={handleFocusCapture}>
               {/* Continue - green by default, grey when Cancel is hovered/focused */}
               <a
                 ref={continueRef}
@@ -124,16 +135,14 @@ export default function ExternalLink({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                onMouseEnter={() => setHoverBtn("continue")}
-                onMouseLeave={() => setHoverBtn(null)}
-                onFocus={() => setFocusedBtn("continue")}
-                onBlur={() => setFocusedBtn(null)}
+                onMouseEnter={() => setActiveBtn("continue")}
+                onMouseLeave={() => setActiveBtn(document.activeElement === cancelRef.current ? "cancel" : "continue")}
                 className={`ext-modal-btn ext-modal-btn--continue ${
-                  (hoverBtn ?? focusedBtn) === "cancel" ? "is-muted" : ""
+                  activeBtn === "cancel" ? "is-muted" : ""
                 } flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-colors border ${
-                  (hoverBtn ?? focusedBtn) === "cancel"
-                    ? "bg-slate-200 text-slate-900 border-slate-400 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:border-slate-500 dark:hover:bg-slate-600"
-                    : "bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700"
+                  activeBtn === "cancel"
+                    ? "bg-slate-200 text-slate-900 border-slate-400 dark:bg-slate-700 dark:text-white dark:border-slate-500"
+                    : "bg-green-600 text-white border-green-600"
                 }`}
               >
                 Continue
@@ -146,14 +155,12 @@ export default function ExternalLink({
               <button
                 ref={cancelRef}
                 onClick={() => setOpen(false)}
-                onMouseEnter={() => setHoverBtn("cancel")}
-                onMouseLeave={() => setHoverBtn(null)}
-                onFocus={() => setFocusedBtn("cancel")}
-                onBlur={() => setFocusedBtn(null)}
+                onMouseEnter={() => setActiveBtn("cancel")}
+                onMouseLeave={() => setActiveBtn(document.activeElement === continueRef.current ? "continue" : "cancel")}
                 className={`ext-modal-btn flex-1 px-5 py-2.5 text-sm font-medium rounded-full transition-colors border ${
-                  (hoverBtn ?? focusedBtn) === "cancel"
-                    ? "bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700"
-                    : "bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-700"
+                  activeBtn === "cancel"
+                    ? "bg-green-600 text-white border-green-600"
+                    : "bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700"
                 }`}
               >
                 Stay on this page

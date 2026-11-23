@@ -254,8 +254,7 @@ export default async function Home() {
             
             {/* Governance */}
             <div>
-              <h2 id="governance-heading" className="text-xl font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-600"></span>
+              <h2 id="governance-heading" className="text-xl font-black text-slate-900 dark:text-white mb-4">
                 Governance & Accountability
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-4">
@@ -280,8 +279,7 @@ export default async function Home() {
 
             {/* Safeguarding */}
             <div>
-              <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-600"></span>
+              <h2 className="text-xl font-black text-slate-900 dark:text-white mb-4">
                 Safeguarding
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-4">
