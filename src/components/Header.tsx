@@ -55,8 +55,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                         href="https://disc.ac.uk/"
                         className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-white dark:bg-green-600/30 shadow-sm"
-                            : "text-slate-600 dark:text-slate-200 hover:bg-green-600 hover:text-white focus-visible:bg-green-600 focus-visible:text-white dark:hover:bg-green-500 dark:hover:text-white dark:focus-visible:bg-green-500 dark:focus-visible:text-white"
+                            ? "border border-slate-900 dark:border-white text-slate-800 dark:text-slate-100 hover:bg-green-600 hover:text-white hover:border-green-600 focus-visible:bg-green-600 focus-visible:text-white focus-visible:border-green-600 dark:hover:bg-green-500 dark:focus-visible:bg-green-500 dark:focus-visible:text-white dark:focus-visible:border-green-500"
+                            : "border border-transparent text-slate-600 dark:text-slate-200 hover:bg-green-600 hover:text-white focus-visible:bg-green-600 focus-visible:text-white dark:hover:bg-green-500 dark:hover:text-white dark:focus-visible:bg-green-500 dark:focus-visible:text-white"
                         }`}
                       >
                         DISC
@@ -66,8 +66,8 @@ export default function Header({ activePage = 'HOME', phoneNumber = '(0161) 410 
                         href={link.href}
                         className={`text-sm font-bold px-4 py-2 rounded-full transition-all focus:outline-none ${
                           isActive
-                            ? "text-green-700 bg-green-100/70 dark:text-white dark:bg-green-600/30 shadow-sm"
-                            : "text-slate-600 dark:text-slate-200 hover:bg-green-600 hover:text-white focus-visible:bg-green-600 focus-visible:text-white dark:hover:bg-green-500 dark:hover:text-white dark:focus-visible:bg-green-500 dark:focus-visible:text-white"
+                            ? "border border-slate-900 dark:border-white text-slate-800 dark:text-slate-100 hover:bg-green-600 hover:text-white hover:border-green-600 focus-visible:bg-green-600 focus-visible:text-white focus-visible:border-green-600 dark:hover:bg-green-500 dark:focus-visible:bg-green-500 dark:focus-visible:text-white dark:focus-visible:border-green-500"
+                            : "border border-transparent text-slate-600 dark:text-slate-200 hover:bg-green-600 hover:text-white focus-visible:bg-green-600 focus-visible:text-white dark:hover:bg-green-500 dark:hover:text-white dark:focus-visible:bg-green-500 dark:focus-visible:text-white"
                         }`}
                       >
                         {link.label}

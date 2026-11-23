@@ -128,10 +128,12 @@ export default function ExternalLink({
                 onMouseLeave={() => setHoverBtn(null)}
                 onFocus={() => setFocusedBtn("continue")}
                 onBlur={() => setFocusedBtn(null)}
-                className={`flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-white text-sm font-medium rounded-full transition-colors ${
+                className={`ext-modal-btn ext-modal-btn--continue ${
+                  (hoverBtn ?? focusedBtn) === "cancel" ? "is-muted" : ""
+                } flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full transition-colors border ${
                   (hoverBtn ?? focusedBtn) === "cancel"
-                    ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                    : "bg-green-600 hover:bg-green-700"
+                    ? "bg-slate-200 text-slate-900 border-slate-400 hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:border-slate-500 dark:hover:bg-slate-600"
+                    : "bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700"
                 }`}
               >
                 Continue
@@ -148,10 +150,10 @@ export default function ExternalLink({
                 onMouseLeave={() => setHoverBtn(null)}
                 onFocus={() => setFocusedBtn("cancel")}
                 onBlur={() => setFocusedBtn(null)}
-                className={`flex-1 px-5 py-2.5 text-sm font-medium rounded-full transition-colors ${
+                className={`ext-modal-btn flex-1 px-5 py-2.5 text-sm font-medium rounded-full transition-colors border ${
                   (hoverBtn ?? focusedBtn) === "cancel"
-                    ? "bg-green-600 text-white hover:bg-green-700"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                    ? "bg-green-600 text-white border-green-600 hover:bg-green-700 hover:border-green-700"
+                    : "bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-700"
                 }`}
               >
                 Stay on this page

@@ -111,6 +111,36 @@ body {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
 }
 
+/* Modal buttons indicate state with colour — suppress the default black focus ring */
+.ext-modal-btn,
+.ext-modal-btn:focus,
+.ext-modal-btn:focus-visible,
+.ext-modal-btn:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.ext-modal-btn::-moz-focus-inner {
+  border: 0;
+}
+
+/* Greyed-out state of Continue: force readable text over the pale background */
+.ext-modal-btn--continue.is-muted {
+  color: #0f172a !important;
+  background-color: #e2e8f0 !important;
+  border-color: #94a3b8 !important;
+}
+.ext-modal-btn--continue.is-muted:hover {
+  background-color: #cbd5e1 !important;
+}
+.dark .ext-modal-btn--continue.is-muted {
+  color: #ffffff !important;
+  background-color: #334155 !important;
+  border-color: #64748b !important;
+}
+.dark .ext-modal-btn--continue.is-muted:hover {
+  background-color: #475569 !important;
+}
+
 @keyframes ext-fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
