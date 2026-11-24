@@ -82,10 +82,9 @@ export default async function BlogPage() {
       author: 'Ezra Rushen',
       text: "On Friday 7th March we marked another fantastic year of Your Digital News Agency, our flagship outreach programme. This year's programme involved 43 students from four schools and colleges across Greater Manchester, who each spent a full week building their own multimedia-rich websites showcasing life at their schools.",
       tags: ['digital careers', 'Your DNA', 'Outreach', 'SEND'],
-      image: '/images/blog/your-dna-manchester.jpg',
+      image: '/images/blog/Your-DNA-Manchester.png',
       slug: 'your-dna-manchester',
       categories: ['Careers', 'Outreach'],
-      externalUrl: 'https://www.digitaladvantage.org.uk/careers/your-dna-manchester/',
     },
     {
       title: 'Digital Advantage wins Gold Award',
@@ -93,10 +92,9 @@ export default async function BlogPage() {
       author: 'Ezra Rushen',
       text: "Digital Advantage are proud to announce that they have recently been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research-led campaigning organisation for Autism. Our aggregated score is 87 out of 100, putting us alongside some of the most progressive organisations in the UK.",
       tags: ['Autism', 'NDEI', 'Neurodiversity', 'Awards'],
-      image: '/images/blog/digital-advantage-wins-gold-award.jpg',
+      image: '/images/blog/How-to-build-a-Box.png',
       slug: 'digital-advantage-wins-gold-award',
       categories: ['Careers', 'Awards'],
-      externalUrl: 'https://www.digitaladvantage.org.uk/careers/digital-advantage-wins-gold-award/',
     },
     {
       title: 'Digital Advantage & SENDCode come together to deliver DISC',
@@ -104,10 +102,9 @@ export default async function BlogPage() {
       author: 'Andy Lovatt',
       text: 'Because we share the same goals, the same ethos and now many of the same personnel, it made sense to bring our two organisations together. SENDCode has become a supported digital agency, doing paid work for clients and working with DISC graduates to deliver it. We are going to be better together.',
       tags: ['digital training', 'DISC', 'SENDCode'],
-      image: '/images/blog/digital-advantage-sendcode-disc.jpg',
+      image: '/images/blog/digital-advantage-sendcode-disc.jpeg',
       slug: 'digital-advantage-sendcode-disc',
       categories: ['DISC College', 'News'],
-      externalUrl: 'https://www.digitaladvantage.org.uk/news/digital-advantage-sendcode/',
     },
     {
       title: 'Your DNA – Empowering SEND Students Through Digital Storytelling',
@@ -261,28 +258,14 @@ export default async function BlogPage() {
                 {/* Header: Title, Date, Author */}
                 <header className="mb-6">
                   <h2 className="text-2xl sm:text-3xl font-black font-geomanist text-slate-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 transition-colors leading-snug tracking-normal">
-                    {post.externalUrl ? (
-                      <ExternalLink href={post.externalUrl} className="hover:text-green-600 dark:hover:text-green-400 transition-colors">
-                        {post.title}
-                      </ExternalLink>
-                    ) : (
-                      <Link href={`/blog/${post.slug}`}>
-                        {post.title}
-                      </Link>
-                    )}
+                    <Link href={`/blog/${post.slug}`}>
+                      {post.title}
+                    </Link>
                   </h2>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-400">
                     <span className="text-slate-500 dark:text-slate-400">{post.date}</span>
                     <span>•</span>
                     <span>by <span className="text-green-700 dark:text-green-400 font-bold">{post.author}</span></span>
-                    {post.isFromSanity && (
-                      <>
-                        <span>•</span>
-                        <span className="px-2 py-0.5 bg-green-100 dark:bg-green-950/70 text-green-800 dark:text-green-300 rounded font-bold uppercase text-[10px]">
-                          Sanity CMS Live
-                        </span>
-                      </>
-                    )}
                   </div>
                 </header>
 
@@ -324,23 +307,13 @@ export default async function BlogPage() {
 
                       {/* Read More button & No Comments badge */}
                       <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-                        {post.externalUrl ? (
-                          <ExternalLink
-                            href={post.externalUrl}
-                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
-                          >
-                            Read more
-                            <span aria-hidden="true">↗</span>
-                          </ExternalLink>
-                        ) : (
-                          <Link
-                            href={`/blog/${post.slug}`}
-                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
-                          >
-                            Read more
-                            <span aria-hidden="true">→</span>
-                          </Link>
-                        )}
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 hover:bg-green-600 text-white text-xs font-black uppercase tracking-wider rounded-lg shadow-sm hover:shadow transition-all focus:outline-none focus:ring-4 focus:ring-green-400"
+                        >
+                          Read more
+                          <span aria-hidden="true">→</span>
+                        </Link>
 
                         <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
                           <svg className="w-4 h-4 text-slate-300 dark:text-slate-600" fill="currentColor" viewBox="0 0 20 20">

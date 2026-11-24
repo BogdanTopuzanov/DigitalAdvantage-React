@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       categoryTitle: 'Careers & Outreach',
       authorName: 'Ezra Rushen',
       publishedAt: 'Wednesday, 28 May 2025',
-      imageUrl: '/images/blog/your-dna-manchester.jpg',
+      imageUrl: '/images/blog/Your-DNA-Manchester.png',
       content: [
         "Your Digital News Agency Celebration: Showcasing Young Talent Across Greater Manchester",
         "On Friday 7th March, we marked another fantastic year of Your Digital News Agency (or Your DNA), our flagship outreach programme empowering young people to develop digital skills and creative confidence.",
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       categoryTitle: 'Careers & Awards',
       authorName: 'Ezra Rushen',
       publishedAt: 'Thursday, 03 April 2025',
-      imageUrl: '/images/blog/digital-advantage-wins-gold-award.jpg',
+      imageUrl: '/images/blog/How-to-build-a-Box.png',
       content: [
         "Digital Advantage are proud to announce that they have recently been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research-led campaigning organisation for Autism.",
         "The NDEI® is the only gold-standard evidence-based framework of its kind in the UK and we are immensely proud to be one of only a few Gold Award holders. The NDEI engages with management and employees and measures the organisation across three areas: Neurodiversity Management, Neuro Inclusion Management and Neuro Inclusion Landscape.",
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       categoryTitle: 'DISC College & News',
       authorName: 'Andy Lovatt',
       publishedAt: 'Tuesday, 31 October 2023',
-      imageUrl: '/images/blog/digital-advantage-sendcode-disc.jpg',
+      imageUrl: '/images/blog/digital-advantage-sendcode-disc.jpeg',
       content: [
         "We provide strengths-based, experiential learning delivered by industry and teaching professionals from diverse backgrounds. As well as DISC, we deliver fully funded programmes to around 30 special schools and colleges each year reaching about 300 young people and giving them skills and a line of sight to careers in the digital economy.",
         "These have been funded by GMCA, Careers and Enterprise Company, Local Authorities and grant-giving bodies such as the Access Foundation. Without this funding, many young people at school would have no opportunity to discover their hidden talents and realise their potential.",
