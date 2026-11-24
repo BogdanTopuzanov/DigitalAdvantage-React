@@ -18,16 +18,16 @@ interface FooterProps {
 }
 
 export default function Footer({ settings }: FooterProps) {
-  // Routes that do not exist yet — render them as inactive (non-clickable) during beta
-  const disabledRoutes = new Set(['/disc', '/videos', '/accessibility', '/contact-us', '/popup', '/pop-up']);
+  // Routes that do not exist yet — shown as normal text that does nothing when clicked
+  const noopRoutes = new Set(['/disc', '/videos', '/accessibility', '/contact-us', '/popup', '/pop-up']);
 
-  const isDisabled = (item: FooterItem) =>
-    !!item.url && !item.url.startsWith('http') && !item.url.startsWith('mailto:') && !item.url.startsWith('tel:') && disabledRoutes.has(item.url);
+  const isNoop = (item: FooterItem) =>
+    !!item.url && !item.url.startsWith('http') && !item.url.startsWith('mailto:') && !item.url.startsWith('tel:') && noopRoutes.has(item.url);
 
   // 1. Fallback for Quick Links
   const defaultQuickLinks: FooterItem[] = [
     { text: 'Home', url: '/', isLink: true },
-    { text: 'DISC', url: '/disc', isLink: true },
+    { text: 'DISC', url: 'https://disc.ac.uk/', isLink: true },
     { text: 'Videos', url: '/videos', isLink: true },
     { text: 'Blog', url: '/blog', isLink: true },
   ];
@@ -60,9 +60,10 @@ export default function Footer({ settings }: FooterProps) {
     : defaultQuickLinks;
 
   // Always drop PopUp and Contact from Quick Links (regardless of CMS data)
-  const quickLinks = quickLinksRaw.filter(
-    (item) => !['PopUp', 'Contact'].includes(item.text.trim())
-  );
+  const quickLinks = quickLinksRaw
+    .filter((item) => !['PopUp', 'Contact'].includes(item.text.trim()))
+    // CMS still stores the old internal DISC route — point it to the real site, same as the header
+    .map((item) => (item.url === '/disc' ? { ...item, url: 'https://disc.ac.uk/' } : item));
 
   const safeguarding = (settings?.footerSafeguarding && settings.footerSafeguarding.length > 0) 
     ? settings.footerSafeguarding 
@@ -75,14 +76,13 @@ export default function Footer({ settings }: FooterProps) {
   // Helper renderer for a single footer line
   const renderItem = (item: FooterItem, idx: number) => {
     if (item.isLink && item.url) {
-      // Inactive (non-clickable) item for routes that don't exist yet
-      if (isDisabled(item)) {
+      // Route that doesn't exist yet: looks identical, but click does nothing
+      if (isNoop(item)) {
         return (
           <li key={idx}>
             <span
               aria-disabled="true"
-              title="Coming soon"
-              className="text-white/45 dark:text-slate-900/45 font-medium cursor-not-allowed select-none"
+              className="text-white dark:text-slate-900 font-medium inline-block select-none"
             >
               {item.text}
             </span>
@@ -193,8 +193,8 @@ export default function Footer({ settings }: FooterProps) {
           <p>© {new Date().getFullYear()} Digital Advantage. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="https://disc.ac.uk/wp-content/uploads/2026/10/DISC-Safeguarding-Policy-September-2026-v3.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Privacy Policy</a>
-            <span aria-disabled="true" title="Coming soon" className="text-white/45 dark:text-slate-900/45 cursor-not-allowed select-none">Accessibility</span>
-            <Link href="/" className="hover:text-green-400 dark:hover:text-green-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-400 focus-visible:ring-offset-[#3A3A3A] dark:focus-visible:ring-offset-[#F7F9F7] rounded transition-colors">Contact</Link>
+            <span aria-disabled="true" className="text-white dark:text-slate-900 font-medium select-none">Accessibility</span>
+            <span className="text-white dark:text-slate-900 font-medium">Contact</span>
           </div>
         </div>
       </div>
