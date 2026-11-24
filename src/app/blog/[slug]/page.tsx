@@ -39,8 +39,58 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   const headerSettings = await client.fetch('coalesce(*[_type == "headerSettings"][0], *[_type == "siteSettings"][0])');
   const footerSettings = await client.fetch('coalesce(*[_type == "footerSettings"][0], *[_type == "siteSettings"][0])');
 
-  // 3. Fallback database with all 9 authentic publications
+  // 3. Fallback database with all authentic publications
   const fallbackArticles: Record<string, any> = {
+    'your-dna-manchester': {
+      title: 'Your DNA Manchester',
+      categoryTitle: 'Careers & Outreach',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Wednesday, 28 May 2025',
+      imageUrl: '/images/blog/your-dna-manchester.jpg',
+      content: [
+        "Your Digital News Agency Celebration: Showcasing Young Talent Across Greater Manchester",
+        "On Friday 7th March, we marked another fantastic year of Your Digital News Agency (or Your DNA), our flagship outreach programme empowering young people to develop digital skills and creative confidence.",
+        "The celebration event took place at Heron House, home to the Greater Manchester Digital Security Hub (DiSH), where students, trainers, and guests came together to reflect on a brilliant week of hard work and creativity.",
+        "This year's programme involved 43 students from four schools and colleges across Greater Manchester, ranging from Year 9 to post-16. Each group spent a full week off-timetable working with one of Digital Advantage's expert industry trainers — Ashley Boroda, Rubbi Bhogal-Wood, Naomi Timperley, or Paul Holloway — to build their own multimedia-rich websites that proudly showcased life at their schools and colleges.",
+        "From creating a project identity and designing a logo to generating original content, the students took ownership of every aspect of their digital newsroom. This year's cohort were also the first to trial our brand-new AI training resources, designed to teach responsible AI use, content ideation, and filmmaking techniques.",
+        "We kicked off the celebration day with an engaging and interactive cybersecurity workshop delivered by James Darwent and James Livsey from Lancaster University, which got everyone thinking about the importance of staying safe online.",
+        "After a delicious lunch provided by our generous hosts at DiSH, the group heard from Ezra Rushen about opportunities at DISC (Digital Independent Specialist College) — for many, a potential next step on their journey into creative and digital careers.",
+        "We've been running Your DNA for over five years now, and we're always evolving the programme to make sure it stays relevant, inspiring and genuinely useful for the young people who take part. Every year we see confidence grow, new skills develop and friendships form.",
+        "A huge thank you to all the schools, trainers, partners and hosts who made this year's Your DNA such a success.",
+      ],
+      tags: ['digital careers', 'Your DNA', 'Outreach', 'SEND'],
+    },
+    'digital-advantage-wins-gold-award': {
+      title: 'Digital Advantage wins Gold Award',
+      categoryTitle: 'Careers & Awards',
+      authorName: 'Ezra Rushen',
+      publishedAt: 'Thursday, 03 April 2025',
+      imageUrl: '/images/blog/digital-advantage-wins-gold-award.jpg',
+      content: [
+        "Digital Advantage are proud to announce that they have recently been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research-led campaigning organisation for Autism.",
+        "The NDEI® is the only gold-standard evidence-based framework of its kind in the UK and we are immensely proud to be one of only a few Gold Award holders. The NDEI engages with management and employees and measures the organisation across three areas: Neurodiversity Management, Neuro Inclusion Management and Neuro Inclusion Landscape.",
+        "Our aggregated score is 87 out of 100 which puts us right up there with some of the most progressive and diverse organisations in the UK.",
+        "Our areas of strength included the adjustments and support we put in place for our employees; the pre-employment support including the job adverts we put in place and arrangements we make for applications, interviews and selection.",
+        "And, whilst we are building a neuro inclusive culture, we can continue to make improvements by developing our social support, improving our interview practice and valuing the work of all our employees.",
+        "We would encourage more companies to get involved with the NDEI and take steps to diversify their workforce. Unemployment for people with Autism is still running at an appalling rate of 71% and there are clear opportunities for companies to make a difference here by hiring more talented people on the Autistic spectrum.",
+        "Every Autistic person is different and the work we do at Digital Advantage, DISC and SendCode is focussed on getting these incredible people the careers in the digital economy. If you'd like to find out how you can make a difference please get in touch with Andy@Digitaladvantage.org.uk for more information.",
+      ],
+      tags: ['Autism', 'NDEI', 'Neurodiversity', 'Awards'],
+    },
+    'digital-advantage-sendcode-disc': {
+      title: 'Digital Advantage & SENDCode come together to deliver DISC',
+      categoryTitle: 'DISC College & News',
+      authorName: 'Andy Lovatt',
+      publishedAt: 'Tuesday, 31 October 2023',
+      imageUrl: '/images/blog/digital-advantage-sendcode-disc.jpg',
+      content: [
+        "We provide strengths-based, experiential learning delivered by industry and teaching professionals from diverse backgrounds. As well as DISC, we deliver fully funded programmes to around 30 special schools and colleges each year reaching about 300 young people and giving them skills and a line of sight to careers in the digital economy.",
+        "These have been funded by GMCA, Careers and Enterprise Company, Local Authorities and grant-giving bodies such as the Access Foundation. Without this funding, many young people at school would have no opportunity to discover their hidden talents and realise their potential.",
+        "Because we share the same goals, the same ethos and now many of the same personnel, it made sense to bring our two organisations together to better achieve these. We're working closely on a new structure and the re-organisation is almost complete.",
+        "SENDCode has become a supported digital agency, doing paid work for clients and working with DISC graduates to deliver this. We're going to be better together and slowly grow our services so that we can help more Autistic young people into the careers they deserve.",
+      ],
+      tags: ['digital training', 'DISC', 'SENDCode'],
+    },
     'your-dna': {
       title: 'Your DNA – Empowering SEND Students Through Digital Storytelling',
       categoryTitle: 'Careers & News',
@@ -62,8 +112,13 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       imageUrl: '/images/blog/Caribean02-1-scaled-460x260_c.jpg',
       content: [
         "We're delighted to announce the release of the fourth captivating episode of our podcast, Echoes of the Caribbean. A vibrant journey through the stories and experiences of the Windrush Generation.",
-        "Produced and recorded by our talented interns and students at DISC, this episode explores oral histories, cultural preservation, and digital storytelling techniques.",
-        "Through hands-on recording, audio editing, and interview coordination, students gain industry-recognised sound design and podcasting credentials, opening doors to careers in creative media.",
+        "This incredible project is a proud partnership between Digital Advantage, the students and staff of Oastlers School, and Bradford's West Indian Community Centre – Checkpoint.",
+        "Digital Advantage was approached by Oastlers School in Bradford back in 2023 with the brief to make a podcast with their learners for Black History Month.",
+        "Checkpoint Community Centre has a treasure trove of audio recordings made in the mid-1980s of people from the community who moved from the Caribbean to start a new life in Bradford in the 1950s and 1960s, talking about their experiences.",
+        "For this episode the students were able to ask the questions first hand with our special guest, Gladstone Rowe. Gladstone left Jamaica for a new life in Bradford in 1960, he shared his personal experiences of the journey to start a new life and how he settled in to his new surroundings in Yorkshire.",
+        "Talented local actor Shaun Thomas (Gerry Roberts, Emmerdale), also came into the school to see some of the creative writing students had created inspired by the project. Shaun has written a short play based on Checkpoint's audio recordings.",
+        "The learners at both Oastlers Schools, in Keighley & Bradford, have skilfully embraced digital tools and developed crucial digital skills to create this podcast.",
+        "You can subscribe or follow Echoes of the Caribbean on Spotify, Apple Podcasts or wherever you get your podcasts. Digital Advantage are investigating funding opportunities to continue this project over the next couple of years.",
       ],
       tags: ['digital careers', 'Podcasts', 'SEND'],
     },
@@ -126,9 +181,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       publishedAt: 'Wednesday, 30 November 2022',
       imageUrl: '/images/blog/dylan-460x260_c.png',
       content: [
-        "Dylan originally joined Digital Advantage as part of our Digital Inc. internship in 2021.",
-        "The course was transformational for him, building his digital skills, along with confidence and timekeeping.",
-        "An asset to any company, Digital Advantage was keen to keep hold of Dylan and were delighted that the Co-op stepped forward to partially fund his apprenticeship.",
+        "Dylan originally joined the Digital Advantage as part of Digital Inc. internship in 2021. The course was transformational for him, building his digital skills, along with confidence and timekeeping.",
+        "An asset to any company, Digital Advantage was keen to keep hold of Dylan and were delighted that the Co-op stepped forward to partially fund his 18 month long apprenticeship as part of our Digital Inc Agency.",
+        "Dylan now works as a key part of the team creating digital projects and websites for real clients, such as Claritas Wealth and Manchester City Council.",
       ],
       tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
     },
@@ -139,9 +194,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       publishedAt: 'Wednesday, 30 November 2022',
       imageUrl: '/images/blog/DISC-logo-with-title-2-460x260_c.png',
       content: [
-        "Digital Advantage is proud to announce that DISC, the Digital Independent Specialist College in Manchester, has celebrated completing it’s first half term by welcoming ten new interns.",
+        "Digital Advantage is proud to announce that DISC, the Digital Independent Specialist College in Manchester, has celebrated completing it's first half term by welcoming ten new interns.",
         "They started their exciting journey in September, completing a four week induction, experimenting with digital photography, video, storyboarding, animation, graphics, scriptwriting, UX design, podcasting and web design.",
-        "DISC provides a supportive stepping stone towards high-value tech employment for young people with an EHCP.",
+        "Be sure to follow their progress by following the @WeAreDISCmcr twitter account, as they work towards careers in the creative and digital economy.",
       ],
       tags: ['careers', 'digital careers', 'SEND'],
     },
@@ -154,7 +209,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       content: [
         "We have a case study featured in this month's issue of Children & Young People Now.",
         "It looks at our Digital Inc. Agency that offered digital supported internships to young people with SEND.",
-        "It charts the progress of Beck, one of our interns, who we first met at one of our Pop-Up Digital Agency deliveries, showing the long-term impact of experiential learning.",
+        "It charts the progress of Beck, one of our interns, who we first met at one of our Pop-Up Digital Agency deliveries, who has now gone on to further develop his skills at college.",
       ],
       tags: ['careers', 'digital careers', 'digital inc', 'SEND'],
     },

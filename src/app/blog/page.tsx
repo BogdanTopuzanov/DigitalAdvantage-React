@@ -74,8 +74,41 @@ export default async function BlogPage() {
     console.error('Failed to fetch posts from Sanity:', error);
   }
 
-  // 3. The 9 Authentic Publications from Digital Advantage
+  // 3. The Authentic Publications from Digital Advantage
   const authenticPosts: BlogPost[] = [
+    {
+      title: 'Your DNA Manchester',
+      date: 'Wednesday, 28 May 2025',
+      author: 'Ezra Rushen',
+      text: "On Friday 7th March we marked another fantastic year of Your Digital News Agency, our flagship outreach programme. This year's programme involved 43 students from four schools and colleges across Greater Manchester, who each spent a full week building their own multimedia-rich websites showcasing life at their schools.",
+      tags: ['digital careers', 'Your DNA', 'Outreach', 'SEND'],
+      image: '/images/blog/your-dna-manchester.jpg',
+      slug: 'your-dna-manchester',
+      categories: ['Careers', 'Outreach'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/careers/your-dna-manchester/',
+    },
+    {
+      title: 'Digital Advantage wins Gold Award',
+      date: 'Thursday, 03 April 2025',
+      author: 'Ezra Rushen',
+      text: "Digital Advantage are proud to announce that they have recently been awarded the Neuro Diversity Employment Index (NDEI) Gold Award by Autistica, the UK's leading research-led campaigning organisation for Autism. Our aggregated score is 87 out of 100, putting us alongside some of the most progressive organisations in the UK.",
+      tags: ['Autism', 'NDEI', 'Neurodiversity', 'Awards'],
+      image: '/images/blog/digital-advantage-wins-gold-award.jpg',
+      slug: 'digital-advantage-wins-gold-award',
+      categories: ['Careers', 'Awards'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/careers/digital-advantage-wins-gold-award/',
+    },
+    {
+      title: 'Digital Advantage & SENDCode come together to deliver DISC',
+      date: 'Tuesday, 31 October 2023',
+      author: 'Andy Lovatt',
+      text: 'Because we share the same goals, the same ethos and now many of the same personnel, it made sense to bring our two organisations together. SENDCode has become a supported digital agency, doing paid work for clients and working with DISC graduates to deliver it. We are going to be better together.',
+      tags: ['digital training', 'DISC', 'SENDCode'],
+      image: '/images/blog/digital-advantage-sendcode-disc.jpg',
+      slug: 'digital-advantage-sendcode-disc',
+      categories: ['DISC College', 'News'],
+      externalUrl: 'https://www.digitaladvantage.org.uk/news/digital-advantage-sendcode/',
+    },
     {
       title: 'Your DNA – Empowering SEND Students Through Digital Storytelling',
       date: 'Wednesday, 30 July 2025',
